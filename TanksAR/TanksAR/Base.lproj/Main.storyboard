@@ -19,11 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-lH-8eg">
-                                <rect key="frame" x="154" y="318" width="67" height="30"/>
+                                <rect key="frame" x="154" y="171" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="START"/>
                                 <connections>
                                     <action selector="onStartTapped:" destination="FQK-QY-C35" eventType="touchUpInside" id="ucK-rX-Fhd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-TI-yXg">
+                                <rect key="frame" x="170" y="209" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="JOIN"/>
+                                <connections>
+                                    <action selector="onJoinTapped:" destination="FQK-QY-C35" eventType="touchUpInside" id="7mY-Xl-Fql"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -38,7 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaa-5o-iFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826.39999999999998" y="37.331334332833585"/>
+            <point key="canvasLocation" x="-799" y="78"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">

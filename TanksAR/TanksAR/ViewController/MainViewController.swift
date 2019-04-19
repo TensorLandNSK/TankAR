@@ -14,6 +14,10 @@ class MainViewController: UIViewController {
     @IBAction func onStartTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "showGame", sender: nil)
     }
+    @IBAction func onJoinTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "showGame", sender: nil)
+        self.present(TanksService.shared().makeBrowserViewController(), animated: false)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
