@@ -28,6 +28,8 @@
 		69D310C62268725000DAB286 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C42268725000DAB286 /* GameBoard.swift */; };
 		69D310CA226872FE00DAB286 /* KeyPositionAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */; };
 		69D310CB226872FE00DAB286 /* BoardAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C9226872FE00DAB286 /* BoardAnchor.swift */; };
+		CEA00ADC2269D70300A7E714 /* Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA00ADB2269D70300A7E714 /* Tank.swift */; };
+		CEBD632C2269F1D40087BDA6 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD632B2269F1D40087BDA6 /* Projectile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		69D310C42268725000DAB286 /* GameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPositionAnchor.swift; sourceTree = "<group>"; };
 		69D310C9226872FE00DAB286 /* BoardAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardAnchor.swift; sourceTree = "<group>"; };
+		CEA00ADB2269D70300A7E714 /* Tank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tank.swift; sourceTree = "<group>"; };
+		CEBD632B2269F1D40087BDA6 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 		690AB4A022686E0D00CFB11E /* TanksAR */ = {
 			isa = PBXGroup;
 			children = (
+				CEA00ADA2269D6CE00A7E714 /* Tank */,
 				6969F2B02268815100F14328 /* ViewController */,
 				6969F2A72268807D00F14328 /* Gesture Recognizers */,
 				6969F2A2226879E700F14328 /* session */,
@@ -158,6 +163,16 @@
 				6969F29E2268754B00F14328 /* SCNNode+Helpers.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		CEA00ADA2269D6CE00A7E714 /* Tank */ = {
+			isa = PBXGroup;
+			children = (
+				CEA00ADB2269D70300A7E714 /* Tank.swift */,
+				CEBD632B2269F1D40087BDA6 /* Projectile.swift */,
+			);
+			name = Tank;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,7 +254,9 @@
 				6969F2A622687FA600F14328 /* ARWorldMap+Helpers.swift in Sources */,
 				69D310CA226872FE00DAB286 /* KeyPositionAnchor.swift in Sources */,
 				6969F2B22268819200F14328 /* ViewController+GestureRecognizers.swift in Sources */,
+				CEA00ADC2269D70300A7E714 /* Tank.swift in Sources */,
 				6969F2AB2268807D00F14328 /* ThresholdRotationGestureRecognizer.swift in Sources */,
+				CEBD632C2269F1D40087BDA6 /* Projectile.swift in Sources */,
 				6969F29D2268754100F14328 /* Functions.swift in Sources */,
 				690AB4A622686E0D00CFB11E /* ViewController.swift in Sources */,
 				6969F2A4226879F800F14328 /* SessionState.swift in Sources */,
@@ -395,13 +412,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56T29FYXL9;
+				DEVELOPMENT_TEAM = P73AKL8YVE;
 				INFOPLIST_FILE = TanksAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vitaly.TanksAR;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tensor.TanksAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -413,13 +430,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56T29FYXL9;
+				DEVELOPMENT_TEAM = P73AKL8YVE;
 				INFOPLIST_FILE = TanksAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vitaly.TanksAR;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tensor.TanksAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
