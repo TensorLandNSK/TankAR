@@ -22,9 +22,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 	var sessionState: SessionState = .setup {
 		didSet {
 			guard oldValue != sessionState else { return }
-			
-			//			os_log(.info, "session state changed to %s", "\(sessionState)")
-			//			configureView()
 			configureARSession()
 		}
 	}
@@ -114,15 +111,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 	}
 	
 	// MARK: - ARSCNViewDelegate
-
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-	
-        return node
-    }
-*/
 	
 	func session(_: ARSession, didFailWithError _: Error) {
 		// Present an error message to the user
@@ -144,14 +132,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 extension ViewController: ARSessionDelegate {
 	
 	func session(_: ARSession, didUpdate frame: ARFrame) {
-		
-		//		// Update game board placement in physical world
-		//		if gameManager != nil {
-		// this is main thread calling into init code
 		updateGameBoard(frame: frame)
-		//		}
-		
-		// Update mapping status for saving maps
-		// updateMappingStatus(frame.worldMappingStatus)
 	}
 }

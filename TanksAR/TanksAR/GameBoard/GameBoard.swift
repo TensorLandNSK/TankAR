@@ -79,10 +79,6 @@ class GameBoard: SCNNode {
 
 		borderNode.name = "border node"
 		
-//		borderNode.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: fillPlane.geometry!))
-//		borderNode.physicsBody?.categoryBitMask = CollisionCategories.gameboard
-//		borderNode.physicsBody?.contactTestBitMask = CollisionCategories.projectile
-		
 		addChildNode(borderNode)
 		
 		
@@ -348,13 +344,7 @@ class GameBoard: SCNNode {
 		material.isDoubleSided = true
 		material.ambient.contents = UIColor.black
 		material.lightingModel = .constant
-		
-		node.name = "plane"
-		
-//		node.physicsBody = SCNPhysicsBody.kinematic()
-//		node.physicsBody?.categoryBitMask = CollisionCategories.gameboard
-//		node.physicsBody?.contactTestBitMask = CollisionCategories.projectile
-		
+				
 		return node
 	}()
 }

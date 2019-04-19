@@ -38,7 +38,6 @@ extension ViewController: UIGestureRecognizerDelegate {
 				sessionState = .setupLevel
 			}
 		case .gameInProgress:
-			// gameManager?.handleTouch(.tapped)
 			break
 		default:
 			break
