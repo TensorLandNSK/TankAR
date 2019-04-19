@@ -10,13 +10,16 @@ import Foundation
 import MultipeerConnectivity
 
 class TanksService: NSObject {
-    private let serviceType = "tanks_service"
+    private let serviceType = "tanks-service"
+    
+    private let maxPeersAmount = 1
     
     private var serviceSession : MCSession!
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     
+    private var peersList : [MCPeerID] = []
+    
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
-    private let serviceBrowser : MCNearbyServiceBrowser
     
     private static var sharedService : TanksService = {
         let tanksService = TanksService()
@@ -25,22 +28,19 @@ class TanksService: NSObject {
     
     private override init() {
         self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
-        self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: serviceType)
         self.serviceSession = MCSession(peer: myPeerId)
         
         super.init()
         
         self.serviceAdvertiser.delegate = self
-        self.serviceAdvertiser.startAdvertisingPeer()
-        
-        self.serviceBrowser.delegate = self
-        self.serviceBrowser.startBrowsingForPeers()
+        //self.serviceAdvertiser.startAdvertisingPeer()
     }
     
+    /*
     deinit {
         self.serviceAdvertiser.stopAdvertisingPeer()
-        self.serviceBrowser.stopBrowsingForPeers()
     }
+     */
     
     class func shared() -> TanksService {
         return sharedService
@@ -49,6 +49,16 @@ class TanksService: NSObject {
     public func makeBrowserViewController() -> MCBrowserViewController {
         return MCBrowserViewController(serviceType: serviceType, session: self.serviceSession)
     }
+    
+    public func startAdvertising() {
+        self.serviceAdvertiser.startAdvertisingPeer()
+    }
+    
+    private func stopAdvertising() {
+        self.serviceAdvertiser.stopAdvertisingPeer()
+    }
+    
+    
 }
 
 extension TanksService : MCNearbyServiceAdvertiserDelegate {
@@ -63,26 +73,24 @@ extension TanksService : MCNearbyServiceAdvertiserDelegate {
     
 }
 
-extension TanksService : MCNearbyServiceBrowserDelegate {
-    
-    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
-        NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
-    }
-    
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        NSLog("%@", "foundPeer: \(peerID)")
-    }
-    
-    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        NSLog("%@", "lostPeer: \(peerID)")
-    }
-    
-}
-
 extension TanksService : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         NSLog("%@", "peer \(peerID) didChangeState: \(state.rawValue)")
+        if  state == MCSessionState.connecting {
+            if self.peersList.count >= maxPeersAmount {
+                stopAdvertising()
+            } else {
+                self.peersList.append(peerID)
+            }
+        } else if state == MCSessionState.notConnected {
+            if let peerIdx = self.peersList.firstIndex ( where: { (peer) -> Bool in
+                return peerID.isEqual(peer)
+                })
+            {
+                self.peersList.remove(at: peerIdx)
+            }
+        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
