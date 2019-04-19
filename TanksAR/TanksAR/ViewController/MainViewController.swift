@@ -7,16 +7,28 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        self.dismiss(animated: false, completion: { self.performSegue(withIdentifier: "showGame", sender: nil) })
+        
+    }
+    
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
 
     @IBOutlet weak var startButton: UIButton!
     @IBAction func onStartTapped(_ sender: Any) {
+        TanksService.shared().startAdvertising()
         self.performSegue(withIdentifier: "showGame", sender: nil)
     }
     @IBAction func onJoinTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "showGame", sender: nil)
-        self.present(TanksService.shared().makeBrowserViewController(), animated: false)
+        let viewController = TanksService.shared().makeBrowserViewController()
+        viewController.delegate = self
+        self.present(viewController, animated: false)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
