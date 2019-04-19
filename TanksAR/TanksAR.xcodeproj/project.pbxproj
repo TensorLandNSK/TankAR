@@ -30,6 +30,7 @@
 		69D310CB226872FE00DAB286 /* BoardAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C9226872FE00DAB286 /* BoardAnchor.swift */; };
 		C8BDCA8B2269CBD500D173E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */; };
 		CEEA60462269DB9000620E87 /* TanksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA60452269DB9000620E87 /* TanksService.swift */; };
+		CEEA6048226A01E800620E87 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA6047226A01E800620E87 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		69D310C9226872FE00DAB286 /* BoardAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardAnchor.swift; sourceTree = "<group>"; };
 		C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CEEA60452269DB9000620E87 /* TanksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanksService.swift; sourceTree = "<group>"; };
+		CEEA6047226A01E800620E87 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				6969F2AE226880CB00F14328 /* CGPoint+Helpers.swift */,
 				6969F2A02268774600F14328 /* SCNMaterial+Helpers.swift */,
 				6969F29E2268754B00F14328 /* SCNNode+Helpers.swift */,
+				CEEA6047226A01E800620E87 /* Notifications.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEA6048226A01E800620E87 /* Notifications.swift in Sources */,
 				6969F29B2268750C00F14328 /* simd+Helpers.swift in Sources */,
 				69D310C62268725000DAB286 /* GameBoard.swift in Sources */,
 				6969F2B42268A66A00F14328 /* ViewController+Base.swift in Sources */,
