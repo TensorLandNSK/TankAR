@@ -29,6 +29,7 @@
 		69D310CA226872FE00DAB286 /* KeyPositionAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */; };
 		69D310CB226872FE00DAB286 /* BoardAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C9226872FE00DAB286 /* BoardAnchor.swift */; };
 		C8BDCA8B2269CBD500D173E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */; };
+		C8DF9216226A0427001700AB /* Tank in Resources */ = {isa = PBXBuildFile; fileRef = C8DF9215226A0427001700AB /* Tank */; };
 		CEEA60462269DB9000620E87 /* TanksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA60452269DB9000620E87 /* TanksService.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPositionAnchor.swift; sourceTree = "<group>"; };
 		69D310C9226872FE00DAB286 /* BoardAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardAnchor.swift; sourceTree = "<group>"; };
 		C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C8DF9215226A0427001700AB /* Tank */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tank; sourceTree = "<group>"; };
 		CEEA60452269DB9000620E87 /* TanksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanksService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 		690AB4A022686E0D00CFB11E /* TanksAR */ = {
 			isa = PBXGroup;
 			children = (
+				C8DF9215226A0427001700AB /* Tank */,
 				6969F2B02268815100F14328 /* ViewController */,
 				6969F2A72268807D00F14328 /* Gesture Recognizers */,
 				6969F2A2226879E700F14328 /* session */,
@@ -228,6 +231,7 @@
 				690AB4AE22686E0E00CFB11E /* LaunchScreen.storyboard in Resources */,
 				690AB4AB22686E0E00CFB11E /* Assets.xcassets in Resources */,
 				690AB4A922686E0D00CFB11E /* Main.storyboard in Resources */,
+				C8DF9216226A0427001700AB /* Tank in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

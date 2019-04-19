@@ -20,7 +20,6 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
     }
     
 
-    @IBOutlet weak var startButton: UIButton!
     @IBAction func onStartTapped(_ sender: Any) {
         TanksService.shared().startAdvertising()
         self.performSegue(withIdentifier: "showGame", sender: nil)
