@@ -29,6 +29,7 @@
 		69D310CA226872FE00DAB286 /* KeyPositionAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */; };
 		69D310CB226872FE00DAB286 /* BoardAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C9226872FE00DAB286 /* BoardAnchor.swift */; };
 		C8BDCA8B2269CBD500D173E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */; };
+		CEEA60462269DB9000620E87 /* TanksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA60452269DB9000620E87 /* TanksService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPositionAnchor.swift; sourceTree = "<group>"; };
 		69D310C9226872FE00DAB286 /* BoardAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardAnchor.swift; sourceTree = "<group>"; };
 		C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CEEA60452269DB9000620E87 /* TanksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanksService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				6969F2A3226879F800F14328 /* SessionState.swift */,
+				CEEA60452269DB9000620E87 /* TanksService.swift */,
 			);
 			path = session;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				6969F2AD2268807D00F14328 /* ThresholdPanGestureRecognizer.swift in Sources */,
 				6969F29F2268754B00F14328 /* SCNNode+Helpers.swift in Sources */,
 				690AB4A222686E0D00CFB11E /* AppDelegate.swift in Sources */,
+				CEEA60462269DB9000620E87 /* TanksService.swift in Sources */,
 				6969F2A12268774600F14328 /* SCNMaterial+Helpers.swift in Sources */,
 				69D310CB226872FE00DAB286 /* BoardAnchor.swift in Sources */,
 			);
