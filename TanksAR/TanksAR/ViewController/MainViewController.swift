@@ -19,10 +19,31 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
         self.dismiss(animated: false, completion: nil)
     }
     
+    @objc func peerConnected() {
+        
+    }
 
-    @IBAction func onStartTapped(_ sender: Any) {
-        TanksService.shared().startAdvertising()
-        self.performSegue(withIdentifier: "showGame", sender: nil)
+    @IBOutlet weak var startStopButton: UIButton!
+    @IBOutlet weak var indicate: UIActivityIndicatorView!
+    @IBOutlet weak var labelConnecting: UITextField!
+    
+    @IBAction func onStartStopTapped(_ sender: Any) {
+        if startStopButton.titleLabel?.text == "START" {
+            startStopButton.setTitle("STOP", for: .normal)
+            indicate.hidesWhenStopped = true
+            indicate.startAnimating()
+            labelConnecting.isHidden = false
+            
+        }
+        else {
+            startStopButton.setTitle("START", for: .normal)
+            indicate.hidesWhenStopped = true
+            indicate.stopAnimating()
+            labelConnecting.isHidden = true
+            
+        }
+        //TanksService.shared().startAdvertising()
+        //self.performSegue(withIdentifier: "showGame", sender: nil)
     }
     @IBAction func onJoinTapped(_ sender: Any) {
         let viewController = TanksService.shared().makeBrowserViewController()
@@ -31,7 +52,7 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(peerConnected), name: Notification.Name.peerConnecting, object: nil)
         // Do any additional setup after loading the view.
     }
     
