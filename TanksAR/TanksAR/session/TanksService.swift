@@ -19,7 +19,7 @@ class TanksService: NSObject {
     
     private var peersList : [MCPeerID] = []
     
-    private let serviceAdvertiser : MCNearbyServiceAdvertiser
+    private let serviceAdvertiser : MCAdvertiserAssistant
     
     private static var sharedService : TanksService = {
         let tanksService = TanksService()
@@ -27,12 +27,10 @@ class TanksService: NSObject {
     }()
     
     private override init() {
-        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
         self.serviceSession = MCSession(peer: myPeerId)
-        
+        self.serviceAdvertiser = MCAdvertiserAssistant(serviceType: serviceType, discoveryInfo: nil, session: serviceSession)
         super.init()
         
-        self.serviceAdvertiser.delegate = self
         //self.serviceAdvertiser.startAdvertisingPeer()
     }
     
@@ -51,33 +49,21 @@ class TanksService: NSObject {
     }
     
     public func startAdvertising() {
-        self.serviceAdvertiser.startAdvertisingPeer()
+        self.serviceAdvertiser.start()
     }
     
     private func stopAdvertising() {
-        self.serviceAdvertiser.stopAdvertisingPeer()
+        self.serviceAdvertiser.stop()
     }
-    
     
 }
 
-extension TanksService : MCNearbyServiceAdvertiserDelegate {
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
-        NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
-    }
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-    }
-    
-}
 
 extension TanksService : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         NSLog("%@", "peer \(peerID) didChangeState: \(state.rawValue)")
-        if  state == MCSessionState.connecting {
+        if state == MCSessionState.connecting {
             if self.peersList.count >= maxPeersAmount {
                 stopAdvertising()
             } else {
