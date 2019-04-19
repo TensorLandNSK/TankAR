@@ -28,8 +28,13 @@
 		69D310C62268725000DAB286 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C42268725000DAB286 /* GameBoard.swift */; };
 		69D310CA226872FE00DAB286 /* KeyPositionAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */; };
 		69D310CB226872FE00DAB286 /* BoardAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D310C9226872FE00DAB286 /* BoardAnchor.swift */; };
+<<<<<<< HEAD
 		CEA00ADC2269D70300A7E714 /* Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA00ADB2269D70300A7E714 /* Tank.swift */; };
 		CEBD632C2269F1D40087BDA6 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD632B2269F1D40087BDA6 /* Projectile.swift */; };
+=======
+		C8BDCA8B2269CBD500D173E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */; };
+		CEEA60462269DB9000620E87 /* TanksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA60452269DB9000620E87 /* TanksService.swift */; };
+>>>>>>> 1bb0e09f0b11db51c68f25190e1c42e8d3391805
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,8 +61,13 @@
 		69D310C42268725000DAB286 /* GameBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		69D310C8226872FE00DAB286 /* KeyPositionAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPositionAnchor.swift; sourceTree = "<group>"; };
 		69D310C9226872FE00DAB286 /* BoardAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardAnchor.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		CEA00ADB2269D70300A7E714 /* Tank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tank.swift; sourceTree = "<group>"; };
 		CEBD632B2269F1D40087BDA6 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
+=======
+		C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CEEA60452269DB9000620E87 /* TanksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanksService.swift; sourceTree = "<group>"; };
+>>>>>>> 1bb0e09f0b11db51c68f25190e1c42e8d3391805
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				6969F2A3226879F800F14328 /* SessionState.swift */,
+				CEEA60452269DB9000620E87 /* TanksService.swift */,
 			);
 			path = session;
 			sourceTree = "<group>";
@@ -131,6 +142,7 @@
 				690AB4A522686E0D00CFB11E /* ViewController.swift */,
 				6969F2B12268819200F14328 /* ViewController+GestureRecognizers.swift */,
 				6969F2B32268A66A00F14328 /* ViewController+Base.swift */,
+				C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -250,6 +262,7 @@
 				6969F29B2268750C00F14328 /* simd+Helpers.swift in Sources */,
 				69D310C62268725000DAB286 /* GameBoard.swift in Sources */,
 				6969F2B42268A66A00F14328 /* ViewController+Base.swift in Sources */,
+				C8BDCA8B2269CBD500D173E0 /* MainViewController.swift in Sources */,
 				6969F2AF226880CB00F14328 /* CGPoint+Helpers.swift in Sources */,
 				6969F2A622687FA600F14328 /* ARWorldMap+Helpers.swift in Sources */,
 				69D310CA226872FE00DAB286 /* KeyPositionAnchor.swift in Sources */,
@@ -264,6 +277,7 @@
 				6969F2AD2268807D00F14328 /* ThresholdPanGestureRecognizer.swift in Sources */,
 				6969F29F2268754B00F14328 /* SCNNode+Helpers.swift in Sources */,
 				690AB4A222686E0D00CFB11E /* AppDelegate.swift in Sources */,
+				CEEA60462269DB9000620E87 /* TanksService.swift in Sources */,
 				6969F2A12268774600F14328 /* SCNMaterial+Helpers.swift in Sources */,
 				69D310CB226872FE00DAB286 /* BoardAnchor.swift in Sources */,
 			);
@@ -412,7 +426,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = P73AKL8YVE;
+=======
+				DEVELOPMENT_TEAM = WUMC7P4M43;
+>>>>>>> 1bb0e09f0b11db51c68f25190e1c42e8d3391805
 				INFOPLIST_FILE = TanksAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -430,7 +448,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = P73AKL8YVE;
+=======
+				DEVELOPMENT_TEAM = WUMC7P4M43;
+>>>>>>> 1bb0e09f0b11db51c68f25190e1c42e8d3391805
 				INFOPLIST_FILE = TanksAR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
