@@ -56,8 +56,16 @@ class TanksService: NSObject {
         self.serviceAdvertiser.stop()
     }
     
+    public func sendData(data: Data) {
+        if self.peersList.count > 0 {
+            do {
+                try serviceSession.send(data, toPeers: self.peersList, with: .reliable)
+            } catch {
+                print(error)
+            }
+        }
+    }
 }
-
 
 extension TanksService : MCSessionDelegate {
     
@@ -66,8 +74,10 @@ extension TanksService : MCSessionDelegate {
         if state == MCSessionState.connecting {
             if self.peersList.count >= maxPeersAmount {
                 stopAdvertising()
+                NotificationCenter.default.post(name: Notification.Name.peerDeclined, object: nil)
             } else {
                 self.peersList.append(peerID)
+                NotificationCenter.default.post(name: Notification.Name.peerConnecting, object: nil)
             }
         } else if state == MCSessionState.notConnected {
             if let peerIdx = self.peersList.firstIndex ( where: { (peer) -> Bool in
@@ -75,12 +85,14 @@ extension TanksService : MCSessionDelegate {
                 })
             {
                 self.peersList.remove(at: peerIdx)
+                NotificationCenter.default.post(name: Notification.Name.peerDisconnected, object: nil)
             }
         }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
+        
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
