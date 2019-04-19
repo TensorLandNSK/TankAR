@@ -10,7 +10,11 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
+    func rotate(orientation: CGPoint) {
+        
+    }
+    
 	
 	@IBOutlet var sceneView: ARSCNView!
 	
@@ -18,7 +22,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 	
 	var targetWorldMap: ARWorldMap?
 
-	
+    @IBOutlet var barrelControl: BarrelControl!
+    
 	var sessionState: SessionState = .setup {
 		didSet {
 			guard oldValue != sessionState else { return }
@@ -45,7 +50,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		sceneView.scene.rootNode.addChildNode(gameBoard)
 		sessionState = .lookingForSurface
 		setupRecognizers()
-
+        
+        barrelControl.delegate = self
 
 	}
 	
