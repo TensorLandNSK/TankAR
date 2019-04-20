@@ -11,12 +11,28 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
+
+    var projectile: Projectile?
     
     func fire() {
-        
+         projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
+        self.gameBoard.addChildNode(projectile!)
     }
     
     func rotate(orientation: CGPoint, sender: BarrelControl) {
+        if sender == barrelControl {
+            rotate(orientation: orientation)
+            angleDisplay.angle = CGFloat(tank.cannonAngle)
+        } else if sender == barrelControlTank {
+            move(orientation: orientation)
+        }
+    }
+    
+    func move(orientation: CGPoint) {
+        tank.move(direction: SCNVector3(0.0, 0.0, 0.005))
+    }
+    
+    func rotate(orientation: CGPoint) {
         let turretAngleSpeed: Double = 1.0 // Degree
         let cannonAngleSpeed: Double = 2.0 // Degree
         var turretAngle: Double
@@ -73,6 +89,34 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		}
 	}
     
+    var worldMapURL: URL = {
+        do {
+            return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .appendingPathComponent("worldMapURL")
+        } catch {
+            fatalError("Error getting world map URL from document directory.")
+        }
+    }()
+    
+    func archive(worldMap: ARWorldMap) throws {
+        let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
+        try data.write(to: self.worldMapURL, options: [.atomic])
+    }
+    
+    func unarchive(worldMapData data: Data) -> ARWorldMap? {
+        guard let unarchievedObject = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data),
+            let worldMap = unarchievedObject else { return nil }
+        return worldMap
+    }
+	
+    func retrieveWorldMapData(from url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: self.worldMapURL)
+        } catch {
+            fatalError("Error retrieving world map data.")
+        }
+    }
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
@@ -121,21 +165,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     
 	func setupLevel() {
 		let boardSize = setupBoard()
-
-        projectile.boardSize = boardSize
-        //tank.rescale(size: boardSize)
-        setupTank()
-	}
-    
-    func setupTank() {
+        //let bodyGeo = SCNPlane(width: CGFloat(boardSize.x), height: CGFloat(boardSize.y))
+        //gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: bodyGeo, options: nil))
         //if( )
-        self.gameBoard.addChildNode(tank)
-        self.gameBoard.addChildNode(projectile)
+        setupTank()
         //tank.boardSize = boardSize
-    }
+        //projectile.boardSize = boardSize
+        //tank.rescale(size: boardSize)
+	}
 	
+    func setupTank() {
+        self.gameBoard.addChildNode(tank)
+    }
+    
 	var tank = Tank()
-    var projectile = Projectile()
 	
 	func setupBoard() -> CGSize {
 		

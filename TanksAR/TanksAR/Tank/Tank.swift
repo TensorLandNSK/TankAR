@@ -73,6 +73,7 @@ class Tank : SCNNode {
         tankPosition.y += direction.y
         tankPosition.z += direction.z
         // Move tank SCNNode
+        self.localTranslate(by: direction)
     }
     
     func rotate(angle: Double) {
