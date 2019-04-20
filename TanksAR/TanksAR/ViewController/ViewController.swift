@@ -19,6 +19,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 	@IBOutlet var sceneView: ARSCNView!
 	
 	var gameBoard = GameBoard()
+    
+    var gameManager = GameManager()
 	
 	var targetWorldMap: ARWorldMap?
 
@@ -31,36 +33,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 		}
 	}
     
-    var worldMapURL: URL = {
-        do {
-            return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                .appendingPathComponent("worldMapURL")
-        } catch {
-            fatalError("Error getting world map URL from document directory.")
-        }
-    }()
-    
-    func archive(worldMap: ARWorldMap) throws {
-        let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
-        try data.write(to: self.worldMapURL, options: [.atomic])
-    }
-    
-    func unarchive(worldMapData data: Data) -> ARWorldMap? {
-        guard let unarchievedObject = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data),
-            let worldMap = unarchievedObject else { return nil }
-        return worldMap
-    }
-	
-    func retrieveWorldMapData(from url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: self.worldMapURL)
-        } catch {
-            fatalError("Error retrieving world map data.")
-        }
-    }
-    
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        gameManager.delegate = self
 		
 		// Set the view's delegate
 		sceneView.delegate = self
@@ -80,6 +56,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 		setupRecognizers()
         
         barrelControl.delegate = self
+        TanksService.shared().delegate = gameManager
 
 	}
 	
@@ -117,6 +94,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 		let boardSize = CGSize(width: CGFloat(gameBoard.scale.x), height: CGFloat(gameBoard.scale.x * gameBoard.aspectRatio))
 		gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
 		sceneView.session.add(anchor: gameBoard.anchor!)
+        
+        sceneView.session.getCurrentWorldMap { (worldMap, error) in
+            self.gameManager.sendWorld(worldMap: worldMap!)
+        }
 		
 		return boardSize
 	}
@@ -174,3 +155,10 @@ extension ViewController: ARSessionDelegate {
 		updateGameBoard(frame: frame)
 	}
 }
+
+extension ViewController: GameManagerDelegate {
+    func didWorldReceieved(worldMap: ARWorldMap) {
+        targetWorldMap = worldMap
+        sessionState = .localizingToBoard
+    }
+    }

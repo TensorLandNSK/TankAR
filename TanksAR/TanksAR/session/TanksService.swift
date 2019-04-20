@@ -14,7 +14,7 @@ class TanksService: NSObject {
     
     private let maxPeersAmount = 1
     
-    private var delegate : TankServiceDelegate?
+    public var delegate : TankServiceDelegate?
     
     private var serviceSession : MCSession!
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
@@ -98,6 +98,8 @@ extension TanksService : MCSessionDelegate {
                 self.peersList.remove(at: peerIdx)
                 NotificationCenter.default.post(name: Notification.Name.peerDisconnected, object: nil)
             }
+        } else if state == MCSessionState.connected {
+            
         }
     }
     
