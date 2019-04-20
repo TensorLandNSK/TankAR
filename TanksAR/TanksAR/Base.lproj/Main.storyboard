@@ -147,12 +147,27 @@
                                     <action selector="fireControl:" destination="BV1-FR-VrT" eventType="valueChanged" id="qGn-pC-vhp"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADA-Hm-bdZ">
+                                <rect key="frame" x="128" y="109" width="118" height="42"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="EZ WIN">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="72" name="TrebuchetMS-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="SZV-CH-Tda" secondAttribute="bottom" constant="160" id="9kS-a8-qPL"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
+                            <constraint firstItem="ADA-Hm-bdZ" firstAttribute="centerX" secondItem="fQZ-KI-GVf" secondAttribute="centerX" id="ItL-D4-wvk"/>
                             <constraint firstItem="EJH-1N-SjA" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="P6U-3D-V2W"/>
+                            <constraint firstItem="ADA-Hm-bdZ" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="50" id="VUy-V9-3Gk"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="EJH-1N-SjA" secondAttribute="bottom" constant="30" id="WCg-92-bpD"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
