@@ -40,6 +40,7 @@
 		CE1219E5226AC1BC006F53EE /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E4226AC1BC006F53EE /* GameManager.swift */; };
 		CE1219E7226AC27A006F53EE /* TankServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */; };
 		CE1219E9226AD6E4006F53EE /* GameManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */; };
+		CEC2DF99226BACFF00711A3E /* tapSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEC2DF98226BACFF00711A3E /* tapSound.mp3 */; };
 		CEEA60462269DB9000620E87 /* TanksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA60452269DB9000620E87 /* TanksService.swift */; };
 		CEEA6048226A01E800620E87 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA6047226A01E800620E87 /* Notifications.swift */; };
 		CEEA604D226A0A4A00620E87 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA604C226A0A4A00620E87 /* GameData.swift */; };
@@ -81,6 +82,7 @@
 		CE1219E4226AC1BC006F53EE /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankServiceDelegate.swift; sourceTree = "<group>"; };
 		CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerDelegate.swift; sourceTree = "<group>"; };
+		CEC2DF98226BACFF00711A3E /* tapSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tapSound.mp3; sourceTree = "<group>"; };
 		CEEA60452269DB9000620E87 /* TanksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanksService.swift; sourceTree = "<group>"; };
 		CEEA6047226A01E800620E87 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CEEA604C226A0A4A00620E87 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				C8DF9249226B6469001700AB /* reloading.mp3 */,
 				C8DF9247226B61F4001700AB /* shotTank.mp3 */,
+				CEC2DF98226BACFF00711A3E /* tapSound.mp3 */,
 				C8DF9245226B555B001700AB /* AudioControl.swift */,
 			);
 			path = Audio;
@@ -301,6 +304,7 @@
 				690AB4AE22686E0E00CFB11E /* LaunchScreen.storyboard in Resources */,
 				690AB4AB22686E0E00CFB11E /* Assets.xcassets in Resources */,
 				690AB4A922686E0D00CFB11E /* Main.storyboard in Resources */,
+				CEC2DF99226BACFF00711A3E /* tapSound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

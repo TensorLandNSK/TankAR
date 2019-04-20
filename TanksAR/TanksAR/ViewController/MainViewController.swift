@@ -30,7 +30,10 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
     @IBOutlet weak var indicate: UIActivityIndicatorView!
     @IBOutlet weak var labelConnecting: UITextField!
     
+    let tapSound = AudioControl(forResource: "tapSound")
+    
     @IBAction func onStartStopTapped(_ sender: Any) {
+        tapSound.onPlay(volume: 0.5)
         if startStopButton.titleLabel?.text == "START" {
             startStopButton.setTitle("STOP", for: .normal)
             indicate.hidesWhenStopped = true
@@ -51,6 +54,7 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
         self.performSegue(withIdentifier: "showGame", sender: nil)
     }
     @IBAction func onJoinTapped(_ sender: Any) {
+        tapSound.onPlay(volume: 0.5)
         let viewController = TanksService.shared().makeBrowserViewController()
         viewController.delegate = self
         self.present(viewController, animated: false)
