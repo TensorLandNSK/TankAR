@@ -11,11 +11,13 @@ import SceneKit
 import ARKit
 
 class Projectile : SCNNode {
+    var boardSize = CGSize(width: 0.3, height: 0.54)
+    var scaleFactor: Float?
     
     override init() {
         super.init()
         
-        self.geometry = SCNCylinder(radius: 0.005, height: 0.01)
+        self.geometry = SCNCylinder(radius: 0.0001, height: 0.05)
         
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.red
@@ -29,5 +31,11 @@ class Projectile : SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    func rescale(size: CGSize) {
+        let minSize: SCNVector3 = self.boundingBox.min
+        let maxSize: SCNVector3 = self.boundingBox.max
+        scaleFactor = Float(0.5) * Float(boardSize.width) / abs(maxSize.x - minSize.x)
+        
+        self.scale = SCNVector3( scaleFactor!, scaleFactor!, scaleFactor! )
+    }
 }

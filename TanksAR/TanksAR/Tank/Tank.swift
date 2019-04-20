@@ -12,24 +12,33 @@ import ARKit
 
 class Tank : SCNNode {
     var tanksChilds: [SCNNode]
-    let scaleFactor = SCNVector3(0.05, 0.05, 0.05)
+    //var boardSize = CGSize(width: 0.3, height: 0.54)
+    var scaleFactor = SCNVector3( 0.05, 0.05, 0.05 )
+    
     override init() {
-//        // Create a new scene
-//        let scene = SCNScene(named: "art.scnassets/TankModel.dae")!
-//        tanksChilds = scene.rootNode.childNodes
-//
-        tanksChilds = []
+        // Create a new scene
+        let scene = SCNScene(named: "art.scnassets/TankModel.dae")!
+        tanksChilds = scene.rootNode.childNodes
+        
         super.init()
         
-//
-//        for childNode in tanksChilds {
-//            self.addChildNode(childNode as SCNNode)
-//            //childNode.geometry?.materials = [newMaterial]
-//        }
-//        self.scale = scaleFactor
+        for childNode in tanksChilds {
+            self.addChildNode(childNode as SCNNode)
+            //childNode.geometry?.materials = [newMaterial]
+        }
+        
+        self.scale = scaleFactor
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func rescale(size: CGSize) {
+        let minSize: SCNVector3 = self.boundingBox.min
+        let maxSize: SCNVector3 = self.boundingBox.max
+        let scaleFactor = Float(0.5) * Float(size.width) / abs(maxSize.x - minSize.x)
+        
+        self.scale = SCNVector3( scaleFactor, scaleFactor, scaleFactor )
     }
 }
