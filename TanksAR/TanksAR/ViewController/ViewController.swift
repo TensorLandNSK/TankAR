@@ -10,7 +10,11 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
+    func fire() {
+        
+    }
+    
     func rotate(orientation: CGPoint) {
         
     }
@@ -24,13 +28,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 
     @IBOutlet var barrelControl: BarrelControl!
     
-	var sessionState: SessionState = .setup {
+    @IBOutlet var fireControl: FireControl!
+    
+    @IBOutlet var barrelControlTank: BarrelControl!
+    
+    var sessionState: SessionState = .setup {
 		didSet {
 			guard oldValue != sessionState else { return }
 			configureARSession()
 		}
 	}
 	
+    
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -52,6 +62,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 		setupRecognizers()
         
         barrelControl.delegate = self
+        fireControl.delegateFire = self
+        barrelControlTank.delegate = self
 
 	}
 	
