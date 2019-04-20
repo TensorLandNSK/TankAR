@@ -11,7 +11,9 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
+
     var projectile: Projectile?
+    
     func fire() {
          projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
         self.gameBoard.addChildNode(projectile!)
@@ -20,6 +22,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     func rotate(orientation: CGPoint, sender: BarrelControl) {
         if sender == barrelControl {
             rotate(orientation: orientation)
+            angleDisplay.angle = CGFloat(tank.cannonAngle)
         } else if sender == barrelControlTank {
             move(orientation: orientation)
         }
@@ -58,6 +61,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         tank.rotateTurret(angle: turretAngle)
     }
     
+    /*
+     angleDisplay.angle отвечает за угол стрелки показателя наклона дула в радианах
+    */
+    
 	
 	@IBOutlet var sceneView: ARSCNView!
 	
@@ -72,6 +79,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     @IBOutlet var fireControl: FireControl!
     
     @IBOutlet var barrelControlTank: BarrelControl!
+    
+    @IBOutlet var angleDisplay: AngleDisplay!
     
     var sessionState: SessionState = .setup {
 		didSet {
