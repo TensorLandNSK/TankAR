@@ -247,4 +247,12 @@ extension ViewController: GameManagerDelegate {
         targetWorldMap = worldMap
         sessionState = .localizingToBoard
     }
+    
+    func didTankMovementReceived(vector: CGPoint) {
+        
+    }
+    
+    func didBarrelMovementReceived(vector: CGPoint) {
+        
+    }
 }

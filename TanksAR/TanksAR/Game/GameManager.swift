@@ -49,11 +49,19 @@ class GameManager : TankServiceDelegate {
         }
     }
     
-//    func sendTankMovement(vector: CGPoint) {
-//        do {
-//            try archive()
-//        }
-//    }
+    func sendTankMovement(vector: CGPoint) {
+        let gameData = GameData.tankMovement(vector: vector)
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(gameData)
+        TanksService.shared().sendData(data: data)
+    }
+    
+    func sendBarrelMovement(vector: CGPoint) {
+        let gameData = GameData.barrelMovement(vector: vector)
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(gameData)
+        TanksService.shared().sendData(data: data)
+    }
     
     func didDataReceived(data : Data, fromPeer peerID : MCPeerID) {
         let decoder = JSONDecoder()
@@ -64,9 +72,9 @@ class GameManager : TankServiceDelegate {
             let mapUnarchived = self.unarchive(worldMapData: worldMap!)
             delegate?.didWorldReceieved(worldMap: mapUnarchived!)
         case .tankMovement(let vector):
-            print(vector)
+            delegate?.didTankMovementReceived(vector: vector)
         case .barrelMovement(let vector):
-            print(vector)
+            delegate?.didBarrelMovementReceived(vector: vector)
         }
     }
     
