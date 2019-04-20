@@ -24,6 +24,7 @@ class Tank : SCNNode {
     let distanceToCorner: Double?
     
     var tankPosition: SCNVector3
+    var tankRotateAngle: Double = 0.0
     var turretAngle: Double = 0.0
     var cannonAngle: Double = 0.0
     //var turretAngleSpeed: Double = 0.0
@@ -69,15 +70,17 @@ class Tank : SCNNode {
     }
     
     func move(direction: SCNVector3) {
-        tankPosition.x += direction.x
-        tankPosition.y += direction.y
-        tankPosition.z += direction.z
+//        tankPosition.x += direction.x
+//        tankPosition.y += direction.y
+//        tankPosition.z += direction.z
         // Move tank SCNNode
         self.localTranslate(by: direction)
     }
     
     func rotate(angle: Double) {
         // Rotate full tank
+        tankRotateAngle += angle*Double.pi/180.0
+        self.eulerAngles.y = Float(tankRotateAngle)
     }
     
     func rotateTurret(angle: Double) {

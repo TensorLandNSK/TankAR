@@ -81,6 +81,9 @@ class GameBoard: SCNNode {
 		borderNode.name = "border node"
 		
 		addChildNode(borderNode)
+        
+        //let boardGeo = SCNBox()
+        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
     }
 	
 	required init?(coder aDecoder: NSCoder) {

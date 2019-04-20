@@ -13,7 +13,10 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
     var projectile: Projectile?
     func fire() {
-         projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
+        
+        let cannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
+//        projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
+        projectile = Projectile(initialPosition: cannonPosition!, initialDirection: SCNVector3(1.0, 0.0, 0.0))
         self.gameBoard.addChildNode(projectile!)
     }
     
@@ -26,7 +29,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     }
     
     func move(orientation: CGPoint) {
-        tank.move(direction: SCNVector3(0.0, 0.0, 0.005))
+        let speed: Double = 0.005
+        let angleSpeed: Double = 0.5
+        
+        var direction = SCNVector3(0.0, 0.0, 0.0)
+        var angle: Double = 0.0
+        if orientation.x > 0 {
+            angle = angleSpeed
+        }
+        else if orientation.x < 0 {
+            angle = -angleSpeed
+        }
+        
+        if orientation.y > 0 {
+            direction = SCNVector3(0.0, 0.0, speed)
+        }
+        else if orientation.y < 0 {
+            direction = SCNVector3(0.0, 0.0, -speed)
+        }
+        tank.move(direction: direction)
+        tank.rotate(angle: angle)
     }
     
     func rotate(orientation: CGPoint) {
