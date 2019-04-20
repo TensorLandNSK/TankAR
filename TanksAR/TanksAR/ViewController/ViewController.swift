@@ -11,11 +11,25 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
+    var projectile: Projectile?
     func fire() {
-        
+         projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
+        self.gameBoard.addChildNode(projectile!)
     }
     
     func rotate(orientation: CGPoint, sender: BarrelControl) {
+        if sender == barrelControl {
+            rotate(orientation: orientation)
+        } else if sender == barrelControlTank {
+            move(orientation: orientation)
+        }
+    }
+    
+    func move(orientation: CGPoint) {
+        tank.move(direction: SCNVector3(0.1, 0.0, 0.0))
+    }
+    
+    func rotate(orientation: CGPoint) {
         let turretAngleSpeed: Double = 1.0 // Degree
         let cannonAngleSpeed: Double = 2.0 // Degree
         var turretAngle: Double
@@ -137,16 +151,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     
 	func setupLevel() {
 		let boardSize = setupBoard()
+        //let bodyGeo = SCNPlane(width: CGFloat(boardSize.x), height: CGFloat(boardSize.y))
+        //gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: bodyGeo, options: nil))
         //if( )
-        //self.gameBoard.addChildNode(tank)
-        self.gameBoard.addChildNode(projectile)
+        self.gameBoard.addChildNode(tank)
         //tank.boardSize = boardSize
         //projectile.boardSize = boardSize
         //tank.rescale(size: boardSize)
 	}
 	
 	var tank = Tank()
-    var projectile = Projectile(initialPosition: SCNVector3(0.0, 0.0, 0.0), initialDirection: SCNVector3(1.0, 0.0, 0.0))
 	
 	func setupBoard() -> CGSize {
 		

@@ -31,9 +31,16 @@ class Projectile : SCNNode {
         }
         
         self.scale = scaleFactor
+        
+        let min = projectileChilds[2].boundingBox.min
+        let max = projectileChilds[2].boundingBox.max
+        let pHeight = CGFloat(max.y - min.y)
+        let pRadius = CGFloat((max.x - min.x) / 2)
+        let projectileGeo = SCNCylinder(radius: pRadius, height: pHeight)
+        
         self.position = SCNVector3(0.3, 0.3, 0.3)
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: projectileGeo, options: nil))
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
