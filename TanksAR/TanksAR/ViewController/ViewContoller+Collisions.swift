@@ -15,27 +15,5 @@ extension ViewController : SCNPhysicsContactDelegate {
         case tank = 1
         case projectile
         case ground
-    }
-    
-    func collisions() {
-        gameBoard.physicsBody = SCNPhysicsBody.kinematic()
-        gameBoard.physicsBody!.categoryBitMask = colliderCategory.ground.rawValue
-        
-        if #available(iOS 9.0, *) {
-            gameBoard.physicsBody!.contactTestBitMask = colliderCategory.projectile.rawValue
-        } else {
-            gameBoard.physicsBody!.collisionBitMask = colliderCategory.projectile.rawValue
-        }
-        
-        let min = projectile?.projectileChilds[2].boundingBox.min
-        let max = projectile?.projectileChilds[2].boundingBox.max
-        let pHeight = CGFloat(max!.y - min!.y)
-        let pRadius = CGFloat((max!.x - min!.x) / 2)
-        let projectileGeo = SCNCylinder(radius: pRadius, height: pHeight)
-        
-        projectile?.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: projectileGeo, options: nil))
-        projectile?.physicsBody!.categoryBitMask = colliderCategory.projectile.rawValue
-        
-    }
-    
+    }    
 }

@@ -12,17 +12,12 @@ import ARKit
 
 class Projectile : SCNNode {
     var projectileChilds: [SCNNode]
-    var projectilePosition: SCNVector3
-    let direction: SCNVector3
-    var boardSize = CGSize(width: 0.3, height: 0.54)
-    var scaleFactor = SCNVector3(0.05, 0.05, 0.05)
+    var scaleFactor = SCNVector3(0.5, 0.5, 0.5)
     
-    init(initialPosition: SCNVector3, initialDirection: SCNVector3) {
+    override init() {
         // Create a new scene
         let pojectileScene = SCNScene(named: "art.scnassets/ProjectileModel.dae")!
         projectileChilds = pojectileScene.rootNode.childNodes
-        projectilePosition = initialPosition
-        direction = initialDirection
         
         super.init()
         
@@ -31,8 +26,23 @@ class Projectile : SCNNode {
         }
         
         self.scale = scaleFactor
-        self.position = SCNVector3(0.3, 0.3, 0.3)
-        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: projectileGeo, options: nil))
+        self.position = SCNVector3(0.0, 3, 0.0)
+        
+//        let min = self.projectileChilds[2].boundingBox.min
+//        let max = self.projectileChilds[2].boundingBox.max
+//        let pHeight = CGFloat(max.y - min.y)
+//        let pRadius = CGFloat((max.x - min.x) / 2)
+//        let projectileGeo = SCNCylinder(radius: pRadius, height: pHeight)
+        
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: self))
+        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.projectile.rawValue
+        
+        if #available(iOS 9.0, *) {
+            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.ground.rawValue | ViewController.colliderCategory.tank.rawValue
+        } else {
+            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.ground.rawValue | ViewController.colliderCategory.tank.rawValue
+        }
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
