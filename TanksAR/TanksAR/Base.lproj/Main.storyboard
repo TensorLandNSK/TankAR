@@ -18,21 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksd-Ha-ILb">
-                                <rect key="frame" x="67" y="140" width="240" height="301"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YZg-kz-ggh">
-                                <rect key="frame" x="101" y="637" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="Waiting for connection..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRp-Ej-fD1">
-                                <rect key="frame" x="129" y="640" width="162" height="17"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-TI-yXg">
-                                <rect key="frame" x="146" y="568" width="83" height="52"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-TI-yXg">
+                                <rect key="frame" x="146" y="592" width="83" height="25"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="JOIN">
@@ -47,8 +34,36 @@
                                     <action selector="onJoinTapped:" destination="FQK-QY-C35" eventType="touchUpInside" id="7mY-Xl-Fql"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-lH-8eg">
-                                <rect key="frame" x="130" y="505" width="115" height="53"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" image="tank_mm.png" translatesAutoresizingMaskIntoConstraints="NO" id="ksd-Ha-ILb">
+                                <rect key="frame" x="19" y="0.0" width="336" height="471"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xg7-5w-4it" userLabel="ViewIndicator">
+                                <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YZg-kz-ggh">
+                                        <rect key="frame" x="5" y="-25" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="0bQ-JY-59x"/>
+                                            <constraint firstAttribute="width" constant="20" id="IL6-76-8La"/>
+                                        </constraints>
+                                    </activityIndicatorView>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="Waiting for connection..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRp-Ej-fD1">
+                                        <rect key="frame" x="56" y="0.0" width="251" height="44"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="YZg-kz-ggh" firstAttribute="leading" secondItem="Xg7-5w-4it" secondAttribute="leading" constant="5" id="180-CM-jaP"/>
+                                    <constraint firstItem="cRp-Ej-fD1" firstAttribute="leading" secondItem="YZg-kz-ggh" secondAttribute="trailing" constant="5" id="59I-c4-UIf"/>
+                                    <constraint firstAttribute="bottom" secondItem="YZg-kz-ggh" secondAttribute="bottom" constant="5" id="iEW-X1-km5"/>
+                                    <constraint firstAttribute="bottom" secondItem="cRp-Ej-fD1" secondAttribute="bottom" constant="5" id="oZz-k5-1Dg"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-lH-8eg">
+                                <rect key="frame" x="130" y="541" width="115" height="25"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="36"/>
                                 <state key="normal" title="START"/>
                                 <connections>
@@ -59,22 +74,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="trailing" secondItem="cRp-Ej-fD1" secondAttribute="trailing" constant="84" id="5Rn-lA-16g"/>
-                            <constraint firstItem="cZB-TI-yXg" firstAttribute="leading" secondItem="Bkd-NW-cpd" secondAttribute="leading" constant="146" id="8Ib-Re-PdS"/>
-                            <constraint firstItem="cZB-TI-yXg" firstAttribute="top" secondItem="PzK-lH-8eg" secondAttribute="bottom" constant="10" id="DtL-sK-uFQ"/>
-                            <constraint firstItem="YZg-kz-ggh" firstAttribute="leading" secondItem="Bkd-NW-cpd" secondAttribute="leading" constant="101" id="KA3-0a-Xjp"/>
-                            <constraint firstItem="cRp-Ej-fD1" firstAttribute="top" secondItem="cZB-TI-yXg" secondAttribute="bottom" constant="20" id="O8t-Y7-WxB"/>
-                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="trailing" secondItem="PzK-lH-8eg" secondAttribute="trailing" constant="130" id="Pv3-Kv-SPH"/>
-                            <constraint firstItem="PzK-lH-8eg" firstAttribute="leading" secondItem="Bkd-NW-cpd" secondAttribute="leading" constant="130" id="fkT-17-G7G"/>
-                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="bottom" secondItem="cRp-Ej-fD1" secondAttribute="bottom" constant="10" id="kyz-Oo-gpq"/>
-                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="trailing" secondItem="cZB-TI-yXg" secondAttribute="trailing" constant="146" id="m6N-Tl-igw"/>
-                            <constraint firstItem="cRp-Ej-fD1" firstAttribute="leading" secondItem="YZg-kz-ggh" secondAttribute="trailing" constant="8" id="uqF-zM-vfU"/>
-                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="bottom" secondItem="YZg-kz-ggh" secondAttribute="bottom" constant="10" id="vkb-h6-1qF"/>
+                            <constraint firstItem="ksd-Ha-ILb" firstAttribute="centerX" secondItem="Bkd-NW-cpd" secondAttribute="centerX" id="4gd-Zt-x3c"/>
+                            <constraint firstItem="PzK-lH-8eg" firstAttribute="bottom" secondItem="cZB-TI-yXg" secondAttribute="top" constant="5" id="6J4-GI-gBp"/>
+                            <constraint firstItem="Xg7-5w-4it" firstAttribute="leading" secondItem="Bkd-NW-cpd" secondAttribute="leading" id="9F5-rN-las"/>
+                            <constraint firstItem="cZB-TI-yXg" firstAttribute="centerX" secondItem="Bkd-NW-cpd" secondAttribute="centerX" id="Djj-9N-dhU"/>
+                            <constraint firstItem="ksd-Ha-ILb" firstAttribute="bottom" secondItem="PzK-lH-8eg" secondAttribute="top" constant="50" id="UuE-8I-TrH"/>
+                            <constraint firstItem="Xg7-5w-4it" firstAttribute="bottom" secondItem="Bkd-NW-cpd" secondAttribute="bottom" id="Wem-dt-DQc"/>
+                            <constraint firstItem="PzK-lH-8eg" firstAttribute="centerX" secondItem="Bkd-NW-cpd" secondAttribute="centerX" id="ZGD-Nv-mXe"/>
+                            <constraint firstItem="Xg7-5w-4it" firstAttribute="trailing" secondItem="Bkd-NW-cpd" secondAttribute="trailing" id="dLf-WQ-psD"/>
+                            <constraint firstItem="Xg7-5w-4it" firstAttribute="top" secondItem="SsW-XM-xdB" secondAttribute="bottom" id="kD2-M2-yzY"/>
+                            <constraint firstItem="Xg7-5w-4it" firstAttribute="top" secondItem="cZB-TI-yXg" secondAttribute="bottom" constant="25" id="uWZ-Co-cwf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bkd-NW-cpd"/>
                     </view>
                     <connections>
                         <outlet property="indicate" destination="YZg-kz-ggh" id="s5S-AY-r3N"/>
+                        <outlet property="joinButton" destination="cZB-TI-yXg" id="01E-H3-VOS"/>
                         <outlet property="labelConnecting" destination="cRp-Ej-fD1" id="RnT-P7-kTn"/>
                         <outlet property="startStopButton" destination="PzK-lH-8eg" id="XWO-Se-U8e"/>
                         <segue destination="BV1-FR-VrT" kind="show" identifier="showGame" id="OD8-70-f36"/>
@@ -162,4 +177,7 @@
             <point key="canvasLocation" x="669.60000000000002" y="27.436281859070466"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tank_mm.png" width="540" height="540"/>
+    </resources>
 </document>

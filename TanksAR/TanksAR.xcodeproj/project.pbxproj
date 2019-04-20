@@ -36,6 +36,7 @@
 		C8DF921D226A046F001700AB /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF921B226A046F001700AB /* Projectile.swift */; };
 		CE1219E5226AC1BC006F53EE /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E4226AC1BC006F53EE /* GameManager.swift */; };
 		CE1219E7226AC27A006F53EE /* TankServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */; };
+		CE1219E9226AD6E4006F53EE /* GameManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */; };
 		CEEA60462269DB9000620E87 /* TanksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA60452269DB9000620E87 /* TanksService.swift */; };
 		CEEA6048226A01E800620E87 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA6047226A01E800620E87 /* Notifications.swift */; };
 		CEEA604D226A0A4A00620E87 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA604C226A0A4A00620E87 /* GameData.swift */; };
@@ -73,6 +74,7 @@
 		C8DF921B226A046F001700AB /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		CE1219E4226AC1BC006F53EE /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankServiceDelegate.swift; sourceTree = "<group>"; };
+		CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerDelegate.swift; sourceTree = "<group>"; };
 		CEEA60452269DB9000620E87 /* TanksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanksService.swift; sourceTree = "<group>"; };
 		CEEA6047226A01E800620E87 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CEEA604C226A0A4A00620E87 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				CEEA604C226A0A4A00620E87 /* GameData.swift */,
 				CE1219E4226AC1BC006F53EE /* GameManager.swift */,
+				CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				6969F29B2268750C00F14328 /* simd+Helpers.swift in Sources */,
 				69D310C62268725000DAB286 /* GameBoard.swift in Sources */,
 				6969F2B42268A66A00F14328 /* ViewController+Base.swift in Sources */,
+				CE1219E9226AD6E4006F53EE /* GameManagerDelegate.swift in Sources */,
 				CE1219E5226AC1BC006F53EE /* GameManager.swift in Sources */,
 				C8BDCA8B2269CBD500D173E0 /* MainViewController.swift in Sources */,
 				6969F2AF226880CB00F14328 /* CGPoint+Helpers.swift in Sources */,

@@ -11,4 +11,5 @@ import MultipeerConnectivity
 
 protocol TankServiceDelegate {
     func didDataReceived(data : Data, fromPeer peerID : MCPeerID)
+    func didDataReceived(url : URL, fromPeer peerID : MCPeerID)
 }
