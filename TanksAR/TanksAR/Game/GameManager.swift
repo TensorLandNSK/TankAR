@@ -59,11 +59,11 @@ class GameManager : TankServiceDelegate {
         gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
         sceneView.session.add(anchor: gameBoard.anchor!)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
-                self.sendWorld(worldMap: worldMap!)
-            }
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
+//                self.sendWorld(worldMap: worldMap!)
+//            }
+//        }
         return boardSize
     }
     
@@ -96,14 +96,16 @@ class GameManager : TankServiceDelegate {
 	
 	func fire(vel: Float, tank: Tank) -> Projectile {
 		
-		let barrel = tank.tanksChilds[2].childNodes[0]//.childNode(withName: "Cannon", recursively: true)!
+		let barrel = tank.tanksChilds[0].childNodes[0]//.childNode(withName: "Cannon", recursively: true)!
 		
 		let proj = Projectile.spawnProjectile()
 		let floats = simd_float3(barrel.worldUp)
 		let normalizedBarrelFront = simd.normalize(floats) * (1.0)
 		proj.node.simdPosition = barrel.simdWorldPosition //+ normalizedBarrelFront
 		
-		proj.launchProjectile(position: SCNVector3Zero, x: normalizedBarrelFront.x * vel, y: normalizedBarrelFront.y * vel, z: normalizedBarrelFront.z * vel)
+        let name = tank == hostTank ? "host" : "enemy"
+        
+        proj.launchProjectile(position: SCNVector3Zero, x: normalizedBarrelFront.x * vel, y: normalizedBarrelFront.y * vel, z: normalizedBarrelFront.z * vel, name: name)
 		
 		return proj
 	}
@@ -250,5 +252,23 @@ class GameManager : TankServiceDelegate {
         let data = try! Data(contentsOf: url)
         let mapUnarchived = self.unarchive(worldMapData: data)
         delegate?.didWorldReceieved(worldMap: mapUnarchived!)
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.ground ) || ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.ground ) {
+            print("Collision with ground")
+        } else if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeA.name == "host" {
+            if contact.nodeB == enemyTank {
+                //contact.nodeA.removeFromParentNode()
+                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
+                NSLog("hit")
+            }
+        } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "host"{
+            if contact.nodeA == enemyTank {
+                //contact.nodeB.removeFromParentNode()
+                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
+                NSLog("hit")
+            }
+        }
     }
 }

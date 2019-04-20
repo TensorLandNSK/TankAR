@@ -16,7 +16,7 @@ class Projectile {
 	
 	init(_ node: SCNNode) {
 		self.node = node
-		node.name = "projetile"
+		
 		
 	}
 	
@@ -28,26 +28,23 @@ class Projectile {
 		
 		// 4
 		let geometryNode = SCNNode(geometry: geometry)
-		geometryNode.physicsBody = SCNPhysicsBody.dynamic()
+        geometryNode.physicsBody = SCNPhysicsBody.dynamic()
 		
 		
 		// 5
 		return Projectile(geometryNode)
 	}
 	
-	func launchProjectile(position: SCNVector3, x: Float, y: Float, z: Float) {
+    func launchProjectile(position: SCNVector3, x: Float, y: Float, z: Float, name: String) {
 		let force = SCNVector3(x: Float(x), y: Float(y) , z: z)
-		
+		node.name = name
 		// 4
 		node.physicsBody?.applyForce(force, at: position, asImpulse: true)
-//		node.categoryBitMask = CollisionCategories.projectile
-//		node.physicsBody?.contactTestBitMask = CollisionCategories.gameboard
+        node.categoryBitMask = ViewController.colliderCategory.projectile
+        node.physicsBody?.contactTestBitMask = ViewController.colliderCategory.tank
         
-        if #available(iOS 9.0, *) {
-            node.physicsBody!.contactTestBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
-        } else {
-            node.physicsBody!.collisionBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
-        }
+//        node.physicsBody!.contactTestBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
+        
         
 	}
 }

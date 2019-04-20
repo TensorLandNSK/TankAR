@@ -84,15 +84,12 @@ class GameBoard: SCNNode {
         
         //let boardGeo = SCNBox()
 //        self.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
-        self.physicsBody = SCNPhysicsBody.static()
+//        self.physicsBody = SCNPhysicsBody.static()
 //        self.physicsBody!.mass = 1000
-        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.ground.rawValue
+//        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.ground
         
-        if #available(iOS 9.0, *) {
-            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile.rawValue
-        } else {
-            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.projectile.rawValue
-        }
+ //       self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile
+
         
     }
     

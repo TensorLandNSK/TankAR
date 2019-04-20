@@ -55,23 +55,21 @@ class Tank : SCNNode {
         
         self.scale = scaleFactor
         
-        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: self))
-        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.tank.rawValue
-        if #available(iOS 9.0, *) {
-            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile.rawValue
-        } else {
-            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.projectile.rawValue
-        }
+        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: SCNBox(width: 0.1, height: 0.062, length: 0.092, chamferRadius: 0), options: nil))
+        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.tank
+//        SCNPhysicsCollisionCategory.default
+        self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile
+
         
-        //tanksChilds[2].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[2].childNodes[0].pivot, Float(0.0), Float(1.8), Float(-2.0))
+        //tanksChilds[0].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[0].childNodes[0].pivot, Float(0.0), Float(1.8), Float(-2.0))
         var yTranslate = Double(2.0)
         var zTranslate = Double(-2.0)
 //        var scale = Double(0.05)
 //        let translateCannonLocal = SCNVector3( 0.0, yTranslate, zTranslate )
         let translateCannonGlobal = SCNVector3( 0.0, yTranslate, zTranslate )
-        tanksChilds[2].childNodes[0].simdPivot = simd_float4x4(SCNMatrix4MakeTranslation(Float(0.0), Float(yTranslate), Float(zTranslate)))
-        tanksChilds[2].childNodes[0].position = translateCannonGlobal // I am not sure how it works but I have to do this two lines to fixe pivot
-//        tanksChilds[2].childNodes[0].localTranslate(by: translateCannonLocal)
+        tanksChilds[0].childNodes[0].simdPivot = simd_float4x4(SCNMatrix4MakeTranslation(Float(0.0), Float(yTranslate), Float(zTranslate)))
+        tanksChilds[0].childNodes[0].position = translateCannonGlobal // I am not sure how it works but I have to do this two lines to fixe pivot
+//        tanksChilds[0].childNodes[0].localTranslate(by: translateCannonLocal)
         
 
     }
@@ -104,14 +102,14 @@ class Tank : SCNNode {
     
     func rotateTurret(angle: Double) {
         let newTurretAngle = turretAngle - angle*Double.pi/180.0
-        if newTurretAngle <= turretMaxAngle && newTurretAngle >= turretMinAngle {
+ //       if newTurretAngle <= turretMaxAngle && newTurretAngle >= turretMinAngle {
             turretAngle = newTurretAngle
             // Turn turret SCNNode [2]
 
-            //tanksChilds[2].eulerAngles = SCNVector3( tanksChilds[2].eulerAngles.x, Float(turretAngle), tanksChilds[2].eulerAngles.z )
+            //tanksChilds[0].eulerAngles = SCNVector3( tanksChilds[0].eulerAngles.x, Float(turretAngle), tanksChilds[0].eulerAngles.z )
             
-            tanksChilds[2].eulerAngles.y = Float(turretAngle)
-        }
+            tanksChilds[0].eulerAngles.y = Float(turretAngle)
+       // }
     }
     
     func adjustCannon(angle: Double) {
@@ -119,16 +117,16 @@ class Tank : SCNNode {
         if newCannonAngle <= cannonMaxAngle && newCannonAngle >= cannonMinAngle {
             cannonAngle = newCannonAngle
             // Turn cannon SCNNode [5]
-            //tanksChilds[2].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[2].childNodes[0].pivot, Float(0.0), Float(1.8), Float(2.0))
-//            tanksChilds[2].childNodes[0].pivot = SCNMatrix4MakeTranslation(Float(0.0), Float(-1.8), Float(2.0))
+            //tanksChilds[0].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[0].childNodes[0].pivot, Float(0.0), Float(1.8), Float(2.0))
+//            tanksChilds[0].childNodes[0].pivot = SCNMatrix4MakeTranslation(Float(0.0), Float(-1.8), Float(2.0))
             
 //            let translateCannon = SCNVector3( 0.0*0.05, 1.8*0.05, -2.0*0.05 )
-//            tanksChilds[2].childNodes[0].pivot = SCNMatrix4MakeTranslation(Float(0.0*0.05), Float(-1.8*0.05), Float(2.0*0.05))
+//            tanksChilds[0].childNodes[0].pivot = SCNMatrix4MakeTranslation(Float(0.0*0.05), Float(-1.8*0.05), Float(2.0*0.05))
             
-            tanksChilds[2].childNodes[0].eulerAngles.x = -Float(cannonAngle)
+            tanksChilds[0].childNodes[0].eulerAngles.x = -Float(cannonAngle)
             
             
-//            tanksChilds[2].childNodes[0].localTranslate(by: translateCannon)
+//            tanksChilds[0].childNodes[0].localTranslate(by: translateCannon)
         }
         
     }
