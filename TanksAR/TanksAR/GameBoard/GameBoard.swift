@@ -83,8 +83,9 @@ class GameBoard: SCNNode {
 		addChildNode(borderNode)
         
         //let boardGeo = SCNBox()
-        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
-        self.physicsBody!.mass = 1000
+//        self.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        self.physicsBody = SCNPhysicsBody.static()
+//        self.physicsBody!.mass = 1000
         self.physicsBody!.categoryBitMask = ViewController.colliderCategory.ground.rawValue
         
         if #available(iOS 9.0, *) {

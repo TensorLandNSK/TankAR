@@ -15,5 +15,13 @@ extension ViewController : SCNPhysicsContactDelegate {
         case tank = 1
         case projectile
         case ground
-    }    
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        if ( contact.nodeA.categoryBitMask == colliderCategory.ground.rawValue ) || ( contact.nodeB.categoryBitMask == colliderCategory.ground.rawValue ) {
+            print("Collision with ground")
+        } else {
+            print("Collisions without ground")
+        }
+    }
 }

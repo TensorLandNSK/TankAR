@@ -85,10 +85,20 @@ class Projectile : SCNNode {
         self.projectilePosition = self.position
         
         
-        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: projectileGeo, options: nil))
+        //self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: projectileGeo, options: nil))
         self.physicsBody?.mass = CGFloat(100.0)
 
         self.physicsBody?.applyForce(direction!, at: self.worldPosition, asImpulse: true)
+        
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: self))
+        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.projectile.rawValue
+        
+        if #available(iOS 9.0, *) {
+            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
+        } else {
+            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
+        }
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

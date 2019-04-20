@@ -55,7 +55,7 @@ class Tank : SCNNode {
         
         self.scale = scaleFactor
         
-        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self))
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: self))
         self.physicsBody!.categoryBitMask = ViewController.colliderCategory.tank.rawValue
         if #available(iOS 9.0, *) {
             self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile.rawValue
