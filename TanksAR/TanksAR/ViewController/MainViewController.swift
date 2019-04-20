@@ -20,8 +20,9 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
     }
     
     @objc func peerConnected() {
-        self.performSegue(withIdentifier: "showGame", sender: nil)
-        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "showGame", sender: nil)
+        }
     }
 
     @IBOutlet weak var joinButton: UIButton!
