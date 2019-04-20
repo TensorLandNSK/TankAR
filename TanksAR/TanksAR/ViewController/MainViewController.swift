@@ -20,9 +20,11 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
     }
     
     @objc func peerConnected() {
+        self.performSegue(withIdentifier: "showGame", sender: nil)
         
     }
 
+    @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var indicate: UIActivityIndicatorView!
     @IBOutlet weak var labelConnecting: UITextField!
@@ -32,18 +34,20 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
             startStopButton.setTitle("STOP", for: .normal)
             indicate.hidesWhenStopped = true
             indicate.startAnimating()
+            joinButton.isHidden = true
             labelConnecting.isHidden = false
             
         }
         else {
             startStopButton.setTitle("START", for: .normal)
             indicate.hidesWhenStopped = true
+            joinButton.isHidden = false
             indicate.stopAnimating()
             labelConnecting.isHidden = true
             
         }
         TanksService.shared().startAdvertising()
-        self.performSegue(withIdentifier: "showGame", sender: nil)
+        //self.performSegue(withIdentifier: "showGame", sender: nil)
     }
     @IBAction func onJoinTapped(_ sender: Any) {
         let viewController = TanksService.shared().makeBrowserViewController()
