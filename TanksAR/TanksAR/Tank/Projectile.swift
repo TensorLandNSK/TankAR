@@ -11,31 +11,30 @@ import SceneKit
 import ARKit
 
 class Projectile : SCNNode {
+    var projectileChilds: [SCNNode]
+    var projectilePosition: SCNVector3
+    let direction: SCNVector3
     var boardSize = CGSize(width: 0.3, height: 0.54)
-    var scaleFactor: Float?
+    var scaleFactor = SCNVector3(0.05, 0.05, 0.05)
     
-    override init() {
+    init(initialPosition: SCNVector3, initialDirection: SCNVector3) {
+        // Create a new scene
+        let pojectileScene = SCNScene(named: "art.scnassets/ProjectileModel.dae")!
+        projectileChilds = pojectileScene.rootNode.childNodes
+        projectilePosition = initialPosition
+        direction = initialDirection
+        
         super.init()
         
-        self.geometry = SCNCylinder(radius: 0.0001, height: 0.05)
+        for childNode in projectileChilds {
+            self.addChildNode(childNode as SCNNode)
+        }
         
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.red
-        
-        self.geometry?.firstMaterial = material
-        
-        self.position = SCNVector3(0, 0, 0)
+        self.scale = scaleFactor
+        self.position = SCNVector3(0.3, 0.3, 0.3)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func rescale(size: CGSize) {
-        let minSize: SCNVector3 = self.boundingBox.min
-        let maxSize: SCNVector3 = self.boundingBox.max
-        scaleFactor = Float(0.5) * Float(boardSize.width) / abs(maxSize.x - minSize.x)
-        
-        self.scale = SCNVector3( scaleFactor!, scaleFactor!, scaleFactor! )
     }
 }

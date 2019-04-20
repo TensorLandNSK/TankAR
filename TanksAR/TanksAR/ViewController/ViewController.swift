@@ -138,15 +138,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 	func setupLevel() {
 		let boardSize = setupBoard()
         //if( )
-        self.gameBoard.addChildNode(tank)
+        //self.gameBoard.addChildNode(tank)
         self.gameBoard.addChildNode(projectile)
         //tank.boardSize = boardSize
-        projectile.boardSize = boardSize
+        //projectile.boardSize = boardSize
         //tank.rescale(size: boardSize)
 	}
 	
 	var tank = Tank()
-    var projectile = Projectile()
+    var projectile = Projectile(initialPosition: SCNVector3(0.0, 0.0, 0.0), initialDirection: SCNVector3(1.0, 0.0, 0.0))
 	
 	func setupBoard() -> CGSize {
 		
