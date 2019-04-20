@@ -16,7 +16,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     
     func fire() {
          projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
-        self.gameBoard.addChildNode(projectile!)
+         self.gameBoard.addChildNode(projectile!)
     }
     
     func rotate(orientation: CGPoint, sender: BarrelControl) {
@@ -176,8 +176,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 	
     func setupTank() {
         self.gameBoard.addChildNode(tank)
-    }
-    
+    }    
 	var tank = Tank()
 	
 	func setupBoard() -> CGSize {
