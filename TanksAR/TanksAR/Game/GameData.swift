@@ -23,10 +23,10 @@ extension GameData: Codable {
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let stringValue = try container.decodeIfPresent(URL.self, forKey: .gameBoard) {
-            self = .gameBoard(value: stringValue)
-        } else if let dataValue = try container.decodeIfPresent(CGPoint.self, forKey: .tankMovement) {
-            self = .tankMovement(vector: dataValue)
+        if let gameBoard = try container.decodeIfPresent(URL.self, forKey: .gameBoard) {
+            self = .gameBoard(value: gameBoard)
+        } else if let tankMovement = try container.decodeIfPresent(CGPoint.self, forKey: .tankMovement) {
+            self = .tankMovement(vector: tankMovement)
         } else {
             self = .barrelMovement(vector: try container.decode(CGPoint.self, forKey: .barrelMovement))
         }
