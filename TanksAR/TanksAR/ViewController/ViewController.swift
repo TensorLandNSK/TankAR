@@ -158,36 +158,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         self.performSegue(withIdentifier: "showMain", sender: nil)
     }
     
-    func onWinnerGame(){
+    func onEndGame(isWinner : Bool){
         angleDisplay.isHidden = true
         barrelControl.isHidden = true
         barrelControlTank.isHidden = true
         fireControl.isHidden = true
         
         statusLabel.textColor = .green
-        statusLabel.text? = "EZ WIN"
+        statusLabel.text? = (isWinner) ? "EZ WIN" : "YOU LOST"
         statusLabel.isHidden = false
         
-        //let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
-        //sceneView.addGestureRecognizer(gs)
+        let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
+        sceneView.addGestureRecognizer(gs)
         
-        //TanksService.shared().serviceSession.disconnect()
-    }
-    
-    func onLoserGame(){
-        angleDisplay.isHidden = true
-        barrelControl.isHidden = true
-        barrelControlTank.isHidden = true
-        fireControl.isHidden = true
-        
-        statusLabel.textColor = .red
-        statusLabel.text = "YOU LOST"
-        statusLabel.isHidden = false
-        
-        //let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
-        //sceneView.addGestureRecognizer(gs)
-        
-        //TanksService.shared().serviceSession.disconnect()
+        TanksService.shared().serviceSession.disconnect()
     }
 }
 
