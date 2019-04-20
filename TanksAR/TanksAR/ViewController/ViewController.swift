@@ -15,7 +15,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         
     }
     
-    func rotate(orientation: CGPoint) {
+    func rotate(orientation: CGPoint, sender: BarrelControl) {
         
     }
     
