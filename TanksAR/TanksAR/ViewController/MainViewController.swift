@@ -20,9 +20,6 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
     }
     
     @objc func peerConnected() {
-        //TanksService.shared().startAdvertising()
-        self.performSegue(withIdentifier: "showGame", sender: nil)
-        
         
     }
 
@@ -46,7 +43,7 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
             
         }
         TanksService.shared().startAdvertising()
-        //self.performSegue(withIdentifier: "showGame", sender: nil)
+        self.performSegue(withIdentifier: "showGame", sender: nil)
     }
     @IBAction func onJoinTapped(_ sender: Any) {
         let viewController = TanksService.shared().makeBrowserViewController()

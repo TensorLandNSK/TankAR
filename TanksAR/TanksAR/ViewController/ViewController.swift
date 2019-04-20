@@ -10,9 +10,38 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
-    func rotate(orientation: CGPoint) {
+class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
+    func fire() {
         
+    }
+    
+    func rotate(orientation: CGPoint) {
+        let turretAngleSpeed: Double = 1.0 // Degree
+        let cannonAngleSpeed: Double = 2.0 // Degree
+        var turretAngle: Double
+        var cannonAngle: Double
+        if orientation.x > 0 {
+            turretAngle = turretAngleSpeed
+        }
+        else if orientation.x < 0 {
+            turretAngle = -turretAngleSpeed
+        }
+        else {
+            turretAngle = 0.0
+        }
+        
+        if orientation.y > 0 {
+            cannonAngle = cannonAngleSpeed
+        }
+        else if orientation.y < 0 {
+            cannonAngle = -cannonAngleSpeed
+        }
+        else {
+            cannonAngle = 0.0
+        }
+        
+        tank.adjustCannon(angle: cannonAngle)
+        tank.rotateTurret(angle: turretAngle)
     }
     
 	
@@ -26,7 +55,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 
     @IBOutlet var barrelControl: BarrelControl!
     
-	var sessionState: SessionState = .setup {
+    @IBOutlet var fireControl: FireControl!
+    
+    @IBOutlet var barrelControlTank: BarrelControl!
+    
+    var sessionState: SessionState = .setup {
 		didSet {
 			guard oldValue != sessionState else { return }
 			configureARSession()
@@ -56,6 +89,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 		setupRecognizers()
         
         barrelControl.delegate = self
+        fireControl.delegateFire = self
+        barrelControlTank.delegate = self
         TanksService.shared().delegate = gameManager
 
 	}
@@ -79,6 +114,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
     
 	func setupLevel() {
 		let boardSize = setupBoard()
+        //if( )
         self.gameBoard.addChildNode(tank)
         self.gameBoard.addChildNode(projectile)
         //tank.boardSize = boardSize

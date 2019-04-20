@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		416191C7226A0AA500ED969D /* BarrelControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416191C6226A0AA500ED969D /* BarrelControl.swift */; };
+		41CA8C20226AC13300F7D73A /* FireControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CA8C1F226AC13300F7D73A /* FireControl.swift */; };
 		690AB4A222686E0D00CFB11E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690AB4A122686E0D00CFB11E /* AppDelegate.swift */; };
 		690AB4A422686E0D00CFB11E /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 690AB4A322686E0D00CFB11E /* art.scnassets */; };
 		690AB4A622686E0D00CFB11E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690AB4A522686E0D00CFB11E /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		416191C6226A0AA500ED969D /* BarrelControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarrelControl.swift; sourceTree = "<group>"; };
+		41CA8C1F226AC13300F7D73A /* FireControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireControl.swift; sourceTree = "<group>"; };
 		690AB49E22686E0D00CFB11E /* TanksAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TanksAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		690AB4A122686E0D00CFB11E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		690AB4A322686E0D00CFB11E /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		416191C5226A0A6B00ED969D /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				41CA8C1F226AC13300F7D73A /* FireControl.swift */,
 				416191C6226A0AA500ED969D /* BarrelControl.swift */,
 			);
 			path = Controls;
@@ -296,6 +299,7 @@
 				6969F2AF226880CB00F14328 /* CGPoint+Helpers.swift in Sources */,
 				6969F2A622687FA600F14328 /* ARWorldMap+Helpers.swift in Sources */,
 				69D310CA226872FE00DAB286 /* KeyPositionAnchor.swift in Sources */,
+				41CA8C20226AC13300F7D73A /* FireControl.swift in Sources */,
 				C8DF921C226A046F001700AB /* Tank.swift in Sources */,
 				6969F2B22268819200F14328 /* ViewController+GestureRecognizers.swift in Sources */,
 				6969F2AB2268807D00F14328 /* ThresholdRotationGestureRecognizer.swift in Sources */,
