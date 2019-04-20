@@ -89,25 +89,24 @@ class GameManager : TankServiceDelegate {
     
     private func fire(tank: Tank) {
         
-        
-        
-        let maxCannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
-        let minCannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.min
-        let scale: Float = 0.05
-        //let frontCannonPosition = SCNVector3( 0.0, 0.0, -2.0 )
-        let frontCannonPosition = SCNVector3((maxCannonPosition!.x - minCannonPosition!.x) * scale / 2.0, maxCannonPosition!.y * scale, (maxCannonPosition!.z - minCannonPosition!.z) * scale / 2.0 )
-        
-        //let projectilePosition = tank.position
-        
-//        let projectileVitesse: Double = 1.0
-        let vitesse = SCNVector3(0.0, maxCannonPosition!.y - minCannonPosition!.y, (maxCannonPosition!.z - minCannonPosition!.z) / 2.0)
-        projectile = Projectile(tank: tank)
-//        projectile = Projectile(initialPosition: frontCannonPosition, initialDirection: vitesse)
-        self.gameBoard.addChildNode(projectile!)
-        
-
-        
+		let proj = fire(vel: 5, tank: tank)
+		
+        self.sceneView.scene.rootNode.addChildNode(proj.node)
     }
+	
+	func fire(vel: Float, tank: Tank) -> Projectile {
+		
+		let barrel = tank.tanksChilds[2].childNodes[0]//.childNode(withName: "Cannon", recursively: true)!
+		
+		let proj = Projectile.spawnProjectile()
+		let floats = simd_float3(barrel.worldUp)
+		let normalizedBarrelFront = simd.normalize(floats) * (1.0)
+		proj.node.simdPosition = barrel.simdWorldPosition //+ normalizedBarrelFront
+		
+		proj.launchProjectile(position: SCNVector3Zero, x: normalizedBarrelFront.x * vel, y: normalizedBarrelFront.y * vel, z: normalizedBarrelFront.z * vel)
+		
+		return proj
+	}
 
     func rotateBarrel(orientation: CGPoint) -> Double {
         sendBarrelMovement(vector: orientation)
