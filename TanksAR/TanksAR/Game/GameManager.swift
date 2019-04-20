@@ -18,6 +18,7 @@ class GameManager : TankServiceDelegate {
     var hostTank = Tank()
     var enemyTank = Tank()
     let shotTank = AudioControl(forResource: "shotTank")
+    let hit = AudioControl(forResource: "hitForEnemy")
     //let explodeTank = AudioControl(forResource: "explodeTank")
     var worldMapURL: URL = {
         do {
@@ -109,15 +110,19 @@ class GameManager : TankServiceDelegate {
 
 		return proj
 	}
-
-    func createTrail(at: SCNVector3) {
+    
+    func createTrail(at: SCNVector3, name: String) {
         let trail = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil)!
         let node = SCNNode()
         node.addParticleSystem(trail)
         node.scale = SCNVector3(0.2, 0.2, 0.2)
-         sceneView.scene.rootNode.addChildNode(node)
+        sceneView.scene.rootNode.addChildNode(node)
         node.worldPosition = at
-       
+        if name == "host" {
+            hit.onPlay(volume: 1)
+        } else if name == "enemy" {
+            hit.onPlay(volume: 0.4)
+        }
     }
     
     func rotateBarrel(orientation: CGPoint) -> Double {
@@ -269,17 +274,31 @@ class GameManager : TankServiceDelegate {
             print("Collision with ground")
         } else if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeA.name == "host" {
             if contact.nodeB == enemyTank {
-                createTrail(at: contact.contactPoint )
+                createTrail(at: contact.contactPoint, name: "enemy" )
                 contact.nodeA.removeFromParentNode()
 //                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
 //                NSLog("hit")
             }
         } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "host"{
             if contact.nodeA == enemyTank {
-                createTrail(at: contact.contactPoint )
+                createTrail(at: contact.contactPoint, name: "enemy" )
                 contact.nodeB.removeFromParentNode()
 //                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
 //                NSLog("hit")
+            }
+        } else if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeA.name == "enemy" {
+            if contact.nodeB == hostTank {
+                createTrail(at: contact.contactPoint, name: "host" )
+                contact.nodeA.removeFromParentNode()
+                //                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
+                //                NSLog("hit")
+            }
+        } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "enemy"{
+            if contact.nodeA == hostTank {
+                createTrail(at: contact.contactPoint, name: "host" )
+                contact.nodeB.removeFromParentNode()
+                //                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
+                //                NSLog("hit")
             }
         }
     }
