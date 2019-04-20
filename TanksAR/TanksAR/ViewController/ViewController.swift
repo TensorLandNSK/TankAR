@@ -65,12 +65,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		// Pause the view's session
 		sceneView.session.pause()
 	}
-
-	
+    
 	func setupLevel() {
 		let boardSize = setupBoard()
         self.gameBoard.addChildNode(tank)
         self.gameBoard.addChildNode(projectile)
+        //tank.boardSize = boardSize
+        projectile.boardSize = boardSize
+        //tank.rescale(size: boardSize)
 	}
 	
 	var tank = Tank()

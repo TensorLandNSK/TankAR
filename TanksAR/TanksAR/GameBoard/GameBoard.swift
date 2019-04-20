@@ -18,7 +18,8 @@ class GameBoard: SCNNode {
 	static let minimumScale: Float = 0.3
 	
 	/// The maximum size of the board in meters
-	static let maximumScale: Float = 11.0 // 15x27m @ 10, 1.5m x 2.7m @ 1
+	//static let maximumScale: Float = 11.0 // 15x27m @ 10, 1.5m x 2.7m @ 1
+    static let maximumScale: Float = 0.3
 	
 	/// Duration of the open/close animation
 	static let animationDuration = 0.7
