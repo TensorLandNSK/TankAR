@@ -104,10 +104,21 @@ class GameManager : TankServiceDelegate {
 		proj.node.simdPosition = barrel.simdWorldPosition //+ normalizedBarrelFront
 		
 		proj.launchProjectile(position: SCNVector3Zero, x: normalizedBarrelFront.x * vel, y: normalizedBarrelFront.y * vel, z: normalizedBarrelFront.z * vel)
-		
+        
+        let trailEmitter = createTrail()
+        let node = SCNNode()
+        node.addParticleSystem(trailEmitter)
+        node.scale = SCNVector3(0.001, 0.001, 0.001)
+        node.worldPosition = proj.node.worldPosition
+        sceneView.scene.rootNode.addChildNode(node)
 		return proj
 	}
 
+    func createTrail() -> SCNParticleSystem {
+        let trail = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil)!
+        return trail
+    }
+    
     func rotateBarrel(orientation: CGPoint) -> Double {
         sendBarrelMovement(vector: orientation)
         return rotateBarrel(tank: hostTank, orientation: orientation)
