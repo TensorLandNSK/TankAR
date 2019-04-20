@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2019-04-20T08:36:00Z</created>
-  <modified>2019-04-20T08:36:00Z</modified>
+  <created>2019-04-20T09:34:31Z</created>
+  <modified>2019-04-20T09:34:31Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -616,7 +616,7 @@
     </instance_geometry>
    </node>
    <node id="Hull_Object_1_002" name="Body">
-    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
+    <matrix>1 0 0 0 0 5.960464e-08 -0.9999998 0 0 0.9999998 5.960464e-08 0 0 0 0 1 </matrix>
     <instance_geometry url="#geometry26">
      <bind_material>
       <technique_common>

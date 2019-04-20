@@ -55,6 +55,16 @@ class Tank : SCNNode {
         self.scale = scaleFactor
         
         //tanksChilds[2].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[2].childNodes[0].pivot, Float(0.0), Float(1.8), Float(-2.0))
+        var yTranslate = Double(2.0)
+        var zTranslate = Double(-2.0)
+        var scale = Double(0.05)
+//        let translateCannonLocal = SCNVector3( 0.0, yTranslate, zTranslate )
+        let translateCannonGlobal = SCNVector3( 0.0, yTranslate, zTranslate )
+        tanksChilds[2].childNodes[0].simdPivot = simd_float4x4(SCNMatrix4MakeTranslation(Float(0.0), Float(yTranslate), Float(zTranslate)))
+        tanksChilds[2].childNodes[0].position = translateCannonGlobal
+//        tanksChilds[2].childNodes[0].localTranslate(by: translateCannonLocal)
+        
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,7 +111,15 @@ class Tank : SCNNode {
             cannonAngle = newCannonAngle
             // Turn cannon SCNNode [5]
             //tanksChilds[2].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[2].childNodes[0].pivot, Float(0.0), Float(1.8), Float(2.0))
+//            tanksChilds[2].childNodes[0].pivot = SCNMatrix4MakeTranslation(Float(0.0), Float(-1.8), Float(2.0))
+            
+//            let translateCannon = SCNVector3( 0.0*0.05, 1.8*0.05, -2.0*0.05 )
+//            tanksChilds[2].childNodes[0].pivot = SCNMatrix4MakeTranslation(Float(0.0*0.05), Float(-1.8*0.05), Float(2.0*0.05))
+            
             tanksChilds[2].childNodes[0].eulerAngles.x = -Float(cannonAngle)
+            
+            
+//            tanksChilds[2].childNodes[0].localTranslate(by: translateCannon)
         }
         
     }
