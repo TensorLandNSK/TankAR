@@ -28,15 +28,10 @@ class AngleDisplay: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         let context = UIGraphicsGetCurrentContext()
-        context!.setFillColor(UIColor.yellow.cgColor)
+        
         //
         let width: CGFloat = 4
-        let vertRect = CGRect(x: 0, y: 0, width: width, height: frame.height)
-        let horizRect = CGRect(x: 0, y: frame.height - width, width: frame.width, height: width)
-        context?.addRect(vertRect)
-        context?.addRect(horizRect)
-        context!.fill(horizRect)
-        context!.fill(vertRect)
+        
         
         context!.setFillColor(UIColor.red.cgColor)
         
@@ -46,6 +41,15 @@ class AngleDisplay: UIView {
         context?.addRect(arrow)
         context!.fill(arrow)
         
+        context?.rotate(by: angle)
+        context?.translateBy(x: -width, y: -frame.height + width*1.5)
+        context!.setFillColor(UIColor.yellow.cgColor)
+        let vertRect = CGRect(x: 0, y: 0, width: width, height: frame.height)
+        let horizRect = CGRect(x: 0, y: frame.height - width, width: frame.width, height: width)
+        context?.addRect(vertRect)
+        context?.addRect(horizRect)
+        context!.fill(horizRect)
+        context!.fill(vertRect)
         
         context!.saveGState()
     }

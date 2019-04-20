@@ -112,7 +112,7 @@
                                 <gestureRecognizers/>
                             </arscnView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnJ-mz-Wa7" customClass="AngleDisplay" customModule="TanksAR" customModuleProvider="target">
-                                <rect key="frame" x="15" y="397" width="110" height="110"/>
+                                <rect key="frame" x="15" y="387" width="110" height="110"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="789-DC-glu"/>
@@ -157,7 +157,7 @@
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="EJH-1N-SjA" secondAttribute="bottom" constant="30" id="WCg-92-bpD"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="gxz-XK-5RE" secondAttribute="trailing" constant="15" id="aFl-8d-At5"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="lnJ-mz-Wa7" secondAttribute="bottom" constant="160" id="bCj-ia-68U"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="lnJ-mz-Wa7" secondAttribute="bottom" constant="170" id="bCj-ia-68U"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="gxz-XK-5RE" secondAttribute="bottom" constant="30" id="o9J-Bx-dOK"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="SZV-CH-Tda" secondAttribute="trailing" constant="15" id="uBO-Zk-ghJ"/>
