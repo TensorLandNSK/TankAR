@@ -44,9 +44,9 @@ class Projectile {
 //		node.physicsBody?.contactTestBitMask = CollisionCategories.gameboard
         
         if #available(iOS 9.0, *) {
-            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
+            node.physicsBody!.contactTestBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
         } else {
-            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
+            node.physicsBody!.collisionBitMask = ViewController.colliderCategory.tank.rawValue | ViewController.colliderCategory.ground.rawValue
         }
         
 	}
