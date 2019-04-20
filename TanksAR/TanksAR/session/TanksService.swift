@@ -28,9 +28,10 @@ class TanksService: NSObject {
     
     private override init() {
         self.serviceSession = MCSession(peer: myPeerId)
+        
         self.serviceAdvertiser = MCAdvertiserAssistant(serviceType: serviceType, discoveryInfo: nil, session: serviceSession)
         super.init()
-        
+        serviceSession.delegate = self
         //self.serviceAdvertiser.startAdvertisingPeer()
     }
     
