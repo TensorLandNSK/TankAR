@@ -12,75 +12,8 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
 
-    var projectile: Projectile?
-    
     func fire() {
-        
-        let cannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
-//        projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
-        projectile = Projectile(initialPosition: cannonPosition!, initialDirection: SCNVector3(1.0, 0.0, 0.0))
-        self.gameBoard.addChildNode(projectile!)
-    }
-    
-    func rotate(orientation: CGPoint, sender: BarrelControl) {
-        if sender == barrelControl {
-            rotate(orientation: orientation)
-            angleDisplay.angle = CGFloat(tank.cannonAngle)
-        } else if sender == barrelControlTank {
-            move(orientation: orientation)
-        }
-    }
-    
-    func move(orientation: CGPoint) {
-        let speed: Double = 0.005
-        let angleSpeed: Double = 0.5
-        
-        var direction = SCNVector3(0.0, 0.0, 0.0)
-        var angle: Double = 0.0
-        if orientation.x > 0 {
-            angle = angleSpeed
-        }
-        else if orientation.x < 0 {
-            angle = -angleSpeed
-        }
-        
-        if orientation.y > 0 {
-            direction = SCNVector3(0.0, 0.0, speed)
-        }
-        else if orientation.y < 0 {
-            direction = SCNVector3(0.0, 0.0, -speed)
-        }
-        tank.move(direction: direction)
-        tank.rotate(angle: angle)
-    }
-    
-    func rotate(orientation: CGPoint) {
-        let turretAngleSpeed: Double = 1.0 // Degree
-        let cannonAngleSpeed: Double = 2.0 // Degree
-        var turretAngle: Double
-        var cannonAngle: Double
-        if orientation.x > 0 {
-            turretAngle = turretAngleSpeed
-        }
-        else if orientation.x < 0 {
-            turretAngle = -turretAngleSpeed
-        }
-        else {
-            turretAngle = 0.0
-        }
-        
-        if orientation.y > 0 {
-            cannonAngle = cannonAngleSpeed
-        }
-        else if orientation.y < 0 {
-            cannonAngle = -cannonAngleSpeed
-        }
-        else {
-            cannonAngle = 0.0
-        }
-        
-        tank.adjustCannon(angle: cannonAngle)
-        tank.rotateTurret(angle: turretAngle)
+        gameManager.fire()
     }
     
     /*
@@ -111,37 +44,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		}
 	}
     
-    var worldMapURL: URL = {
-        do {
-            return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                .appendingPathComponent("worldMapURL")
-        } catch {
-            fatalError("Error getting world map URL from document directory.")
-        }
-    }()
-    
-    func archive(worldMap: ARWorldMap) throws {
-        let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
-        try data.write(to: self.worldMapURL, options: [.atomic])
-    }
-    
-    func unarchive(worldMapData data: Data) -> ARWorldMap? {
-        guard let unarchievedObject = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data),
-            let worldMap = unarchievedObject else { return nil }
-        return worldMap
-    }
-	
-    func retrieveWorldMapData(from url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: self.worldMapURL)
-        } catch {
-            fatalError("Error retrieving world map data.")
-        }
-    }
-    
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
+    
         gameManager.delegate = self
 		
 		// Set the view's delegate
@@ -156,8 +61,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		
 		// Set the scene to the view
 		sceneView.scene = scene
-		
 		sceneView.scene.rootNode.addChildNode(gameBoard)
+        
 		sessionState = .lookingForSurface
 		setupRecognizers()
         
@@ -165,7 +70,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         fireControl.delegateFire = self
         barrelControlTank.delegate = self
         TanksService.shared().delegate = gameManager
-
+        gameManager.gameBoard = gameBoard
+        gameManager.sceneView = sceneView
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -185,39 +91,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		sceneView.session.pause()
 	}
     
-	func setupLevel() {
-		let boardSize = setupBoard()
-        //let bodyGeo = SCNPlane(width: CGFloat(boardSize.x), height: CGFloat(boardSize.y))
-        //gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: bodyGeo, options: nil))
-        //if( )
-        setupTank()
-        //tank.boardSize = boardSize
-        //projectile.boardSize = boardSize
-        //tank.rescale(size: boardSize)
-	}
-	
-    func setupTank() {
-        self.gameBoard.addChildNode(tank)
-    }
-    
-	var tank = Tank()
-	
-	func setupBoard() -> CGSize {
-		
-		let boardSize = CGSize(width: CGFloat(gameBoard.scale.x), height: CGFloat(gameBoard.scale.x * gameBoard.aspectRatio))
-		gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
-		sceneView.session.add(anchor: gameBoard.anchor!)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
-                self.gameManager.sendWorld(worldMap: worldMap!)
-            }
+    func rotate(orientation: CGPoint, sender: BarrelControl) {
+        if sender == barrelControl {
+            let angle = gameManager.rotateBarrel(orientation: orientation)
+            angleDisplay.angle = CGFloat(angle)
+        } else if sender == barrelControlTank {
+            gameManager.moveTank(orientation: orientation)
         }
-        
-
-		
-		return boardSize
-	}
+    }
 	
 	var panOffset = float3()
 
