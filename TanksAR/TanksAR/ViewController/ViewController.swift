@@ -37,6 +37,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     
     @IBOutlet var angleDisplay: AngleDisplay!
     
+    @IBOutlet weak var enemyHPBar: UIProgressView!
+    
     var sessionState: SessionState = .setup {
 		didSet {
 			guard oldValue != sessionState else { return }
@@ -72,6 +74,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         TanksService.shared().delegate = gameManager
         gameManager.gameBoard = gameBoard
         gameManager.sceneView = sceneView
+        
+        enemyHPBar.transform = CGAffineTransform(rotationAngle: .pi)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
