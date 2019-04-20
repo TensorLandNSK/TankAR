@@ -15,7 +15,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         
     }
     
-    func rotate(orientation: CGPoint) {
+    func rotate(orientation: CGPoint, sender: BarrelControl) {
         let turretAngleSpeed: Double = 1.0 // Degree
         let cannonAngleSpeed: Double = 2.0 // Degree
         var turretAngle: Double

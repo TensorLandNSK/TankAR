@@ -16,7 +16,7 @@ func distance(p1: CGPoint, p2: CGPoint) -> CGFloat {
 }
 
 protocol RotateDelegate {
-    func rotate(orientation: CGPoint)
+    func rotate(orientation: CGPoint, sender: BarrelControl)
 }
 
 class BarrelControl: UIView {
@@ -66,7 +66,7 @@ class BarrelControl: UIView {
         
         recognizer.setTranslation(CGPoint.zero, in: self)
         let orientation = CGPoint(x: button.center.x - localCenter.x, y: -button.center.y + localCenter.y)
-        delegate.rotate(orientation: orientation)
+        delegate.rotate(orientation: orientation, sender: self)
     }
     
 }
