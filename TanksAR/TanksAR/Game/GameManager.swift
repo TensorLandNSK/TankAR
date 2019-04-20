@@ -89,9 +89,20 @@ class GameManager : TankServiceDelegate {
     
     private func fire(tank: Tank) {
         
-        let cannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
-        //        projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
-        projectile = Projectile(initialPosition: cannonPosition!, initialDirection: SCNVector3(1.0, 0.0, 0.0))
+        
+        
+        let maxCannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
+        let minCannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.min
+        let scale: Float = 0.05
+        //let frontCannonPosition = SCNVector3( 0.0, 0.0, -2.0 )
+        let frontCannonPosition = SCNVector3((maxCannonPosition!.x - minCannonPosition!.x) * scale / 2.0, maxCannonPosition!.y * scale, (maxCannonPosition!.z - minCannonPosition!.z) * scale / 2.0 )
+        
+        //let projectilePosition = tank.position
+        
+//        let projectileVitesse: Double = 1.0
+        let vitesse = SCNVector3(0.0, maxCannonPosition!.y - minCannonPosition!.y, (maxCannonPosition!.z - minCannonPosition!.z) / 2.0)
+        projectile = Projectile(tank: tank)
+//        projectile = Projectile(initialPosition: frontCannonPosition, initialDirection: vitesse)
         self.gameBoard.addChildNode(projectile!)
         
 

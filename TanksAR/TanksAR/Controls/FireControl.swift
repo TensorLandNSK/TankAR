@@ -14,7 +14,7 @@ protocol FireDelegate {
 
 class FireControl: UIButton {
     var lastTime: Date = Date() - 5.0
-    let dT = 5.0
+    let dT = 1.0
     var delegateFire: FireDelegate!
     let reloadingTank = AudioControl(forResource: "reloading")
     override init(frame: CGRect) {
