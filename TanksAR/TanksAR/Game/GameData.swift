@@ -13,6 +13,7 @@ enum GameData {
     case gameBoard(value: URL)
     case tankMovement(vector: CGPoint)
     case barrelMovement(vector: CGPoint)
+    case launchProjectile
 }
 
 extension GameData: Codable {
@@ -20,6 +21,7 @@ extension GameData: Codable {
         case gameBoard
         case tankMovement
         case barrelMovement
+        case launchProjectile
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -27,8 +29,10 @@ extension GameData: Codable {
             self = .gameBoard(value: gameBoard)
         } else if let tankMovement = try container.decodeIfPresent(CGPoint.self, forKey: .tankMovement) {
             self = .tankMovement(vector: tankMovement)
+        } else if let barrelMovement = try container.decodeIfPresent(CGPoint.self, forKey: .barrelMovement) {
+            self = .barrelMovement(vector: barrelMovement)
         } else {
-            self = .barrelMovement(vector: try container.decode(CGPoint.self, forKey: .barrelMovement))
+            self = .launchProjectile
         }
     }
     
@@ -41,6 +45,8 @@ extension GameData: Codable {
             try container.encode(vector, forKey: .tankMovement)
         case .barrelMovement(let vector):
             try container.encode(vector, forKey: .barrelMovement)
+        case .launchProjectile:
+            try container.encode("", forKey: .launchProjectile)
         }
     }
 }

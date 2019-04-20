@@ -9,6 +9,7 @@
 import Foundation
 import MultipeerConnectivity
 import ARKit
+import AVFoundation
 
 class GameManager : TankServiceDelegate {
     public var delegate : GameManagerDelegate?
@@ -16,6 +17,8 @@ class GameManager : TankServiceDelegate {
     var sceneView: ARSCNView!
     var hostTank = Tank()
     var enemyTank = Tank()
+    let shotTank = AudioControl(forResource: "shotTank")
+    //let explodeTank = AudioControl(forResource: "explodeTank")
     var worldMapURL: URL = {
         do {
             return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -80,6 +83,8 @@ class GameManager : TankServiceDelegate {
     
     func fire() {
         fire(tank: hostTank)
+        shotTank.onPlay(volume: 1)
+        sendLaunchProjectile()
     }
     
     private func fire(tank: Tank) {
@@ -88,6 +93,9 @@ class GameManager : TankServiceDelegate {
         //        projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
         projectile = Projectile(initialPosition: cannonPosition!, initialDirection: SCNVector3(1.0, 0.0, 0.0))
         self.gameBoard.addChildNode(projectile!)
+        
+
+        
     }
 
     func rotateBarrel(orientation: CGPoint) -> Double {
@@ -189,6 +197,13 @@ class GameManager : TankServiceDelegate {
         }
     }
     
+    func sendLaunchProjectile() {
+        let gameData = GameData.launchProjectile
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(gameData)
+        TanksService.shared().sendData(data: data)
+    }
+    
     func sendTankMovement(vector: CGPoint) {
         let gameData = GameData.tankMovement(vector: vector)
         let encoder = JSONEncoder()
@@ -215,6 +230,9 @@ class GameManager : TankServiceDelegate {
             move(tank: enemyTank, orientation: vector)
         case .barrelMovement(let vector):
             rotate(tank: enemyTank, orientation: vector)
+        case .launchProjectile:
+            shotTank.onPlay(volume: 0.1)
+            fire(tank: enemyTank)
         }
     }
     
