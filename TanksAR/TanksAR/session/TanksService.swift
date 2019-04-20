@@ -16,7 +16,7 @@ class TanksService: NSObject {
     
     public var delegate : TankServiceDelegate?
     
-    private var serviceSession : MCSession!
+    public var serviceSession : MCSession!
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     
     private var peersList : [MCPeerID] = []
