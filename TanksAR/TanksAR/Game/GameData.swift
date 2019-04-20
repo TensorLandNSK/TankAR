@@ -7,18 +7,29 @@
 //
 
 import Foundation
+import CoreGraphics
 
 enum GameData {
     case gameBoard(value: URL)
+    case tankMovement(vector: CGPoint)
+    case barrelMovement(vector: CGPoint)
 }
 
 extension GameData: Codable {
     enum CodingKeys: String, CodingKey {
         case gameBoard
+        case tankMovement
+        case barrelMovement
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self = .gameBoard(value: try container.decode(URL.self, forKey: .gameBoard))
+        if let stringValue = try container.decodeIfPresent(URL.self, forKey: .gameBoard) {
+            self = .gameBoard(value: stringValue)
+        } else if let dataValue = try container.decodeIfPresent(CGPoint.self, forKey: .tankMovement) {
+            self = .tankMovement(vector: dataValue)
+        } else {
+            self = .barrelMovement(vector: try container.decode(CGPoint.self, forKey: .barrelMovement))
+        }
     }
     
     func encode(to encoder: Encoder) throws {
@@ -26,6 +37,10 @@ extension GameData: Codable {
         switch self {
         case .gameBoard(let value):
             try container.encode(value, forKey: .gameBoard)
+        case .tankMovement(let vector):
+            try container.encode(vector, forKey: .tankMovement)
+        case .barrelMovement(let vector):
+            try container.encode(vector, forKey: .barrelMovement)
         }
     }
 }
