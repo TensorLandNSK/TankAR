@@ -149,7 +149,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnJ-mz-Wa7" customClass="AngleDisplay" customModule="TanksAR" customModuleProvider="target">
-                                <rect key="frame" x="15" y="427" width="80" height="80"/>
+                                <rect key="frame" x="15" y="407" width="80" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="789-DC-glu"/>
@@ -157,23 +157,23 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxz-XK-5RE" userLabel="Barrel ControlRight" customClass="BarrelControl" customModule="TanksAR" customModuleProvider="target">
-                                <rect key="frame" x="250" y="527" width="110" height="110"/>
+                                <rect key="frame" x="230" y="507" width="130" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="F3s-i0-qXL"/>
-                                    <constraint firstAttribute="width" constant="110" id="KzM-hr-vWu"/>
+                                    <constraint firstAttribute="height" constant="130" id="F3s-i0-qXL"/>
+                                    <constraint firstAttribute="width" constant="130" id="KzM-hr-vWu"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJH-1N-SjA" customClass="BarrelControl" customModule="TanksAR" customModuleProvider="target">
-                                <rect key="frame" x="15" y="527" width="110" height="110"/>
+                                <rect key="frame" x="15" y="507" width="130" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="WEu-9G-ElD"/>
-                                    <constraint firstAttribute="height" constant="110" id="ckP-Sv-FhK"/>
+                                    <constraint firstAttribute="width" constant="130" id="WEu-9G-ElD"/>
+                                    <constraint firstAttribute="height" constant="130" id="ckP-Sv-FhK"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZV-CH-Tda" customClass="FireControl" customModule="TanksAR" customModuleProvider="target">
-                                <rect key="frame" x="280" y="427" width="80" height="80"/>
+                                <rect key="frame" x="280" y="407" width="80" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="QAa-zF-YHa"/>
@@ -201,7 +201,7 @@
                         <constraints>
                             <constraint firstItem="lnJ-mz-Wa7" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="15" id="3oc-5u-fZl"/>
                             <constraint firstItem="L5V-Nt-e9a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GXK-8D-dk9" secondAttribute="trailing" constant="8" symbolic="YES" id="7i7-bN-AJI"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="SZV-CH-Tda" secondAttribute="bottom" constant="160" id="9kS-a8-qPL"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="SZV-CH-Tda" secondAttribute="bottom" constant="180" id="9kS-a8-qPL"/>
                             <constraint firstItem="Y0Z-Cw-WJp" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="30" id="ARr-9U-cIR"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="L5V-Nt-e9a" secondAttribute="trailing" constant="40" id="Bgt-bw-REd"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
@@ -215,7 +215,7 @@
                             <constraint firstItem="b2X-sa-Q5O" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="50" id="X8u-Vk-XFq"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="gxz-XK-5RE" secondAttribute="trailing" constant="15" id="aFl-8d-At5"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="lnJ-mz-Wa7" secondAttribute="bottom" constant="160" id="bCj-ia-68U"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="lnJ-mz-Wa7" secondAttribute="bottom" constant="180" id="bCj-ia-68U"/>
                             <constraint firstItem="Uwi-eq-Sn3" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="30" id="hPk-e1-uhd"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="gxz-XK-5RE" secondAttribute="bottom" constant="30" id="o9J-Bx-dOK"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
