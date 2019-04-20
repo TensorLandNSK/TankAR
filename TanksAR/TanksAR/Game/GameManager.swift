@@ -59,11 +59,11 @@ class GameManager : TankServiceDelegate {
         gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
         sceneView.session.add(anchor: gameBoard.anchor!)
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
-//                self.sendWorld(worldMap: worldMap!)
-//            }
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
+                self.sendWorld(worldMap: worldMap!)
+            }
+        }
         return boardSize
     }
     
