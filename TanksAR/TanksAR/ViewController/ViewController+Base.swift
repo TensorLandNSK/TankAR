@@ -28,6 +28,7 @@ extension ViewController {
 		if sessionState == .setupLevel {
 			// this will advance the session state
 			setupLevel()
+            sessionState = .gameInProgress
 			return
 		}
 		

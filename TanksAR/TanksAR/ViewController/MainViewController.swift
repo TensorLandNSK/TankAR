@@ -42,8 +42,8 @@ class MainViewController: UIViewController, MCBrowserViewControllerDelegate {
             labelConnecting.isHidden = true
             
         }
-        //TanksService.shared().startAdvertising()
-        //self.performSegue(withIdentifier: "showGame", sender: nil)
+        TanksService.shared().startAdvertising()
+        self.performSegue(withIdentifier: "showGame", sender: nil)
     }
     @IBAction func onJoinTapped(_ sender: Any) {
         let viewController = TanksService.shared().makeBrowserViewController()
