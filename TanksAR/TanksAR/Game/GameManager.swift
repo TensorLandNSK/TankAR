@@ -59,4 +59,10 @@ class GameManager : TankServiceDelegate {
             delegate?.didWorldReceieved(worldMap: mapUnarchived!)
         }
     }
+    
+    func didDataReceived(url : URL, fromPeer peerID : MCPeerID) {
+        let data = try! Data(contentsOf: url)
+        let mapUnarchived = self.unarchive(worldMapData: data)
+        delegate?.didWorldReceieved(worldMap: mapUnarchived!)
+    }
 }

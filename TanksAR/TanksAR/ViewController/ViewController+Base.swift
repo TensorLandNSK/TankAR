@@ -93,6 +93,7 @@ extension ViewController {
 				gameBoard.simdTransform = boardAnchor.transform
 				gameBoard.simdScale = float3(Float(boardAnchor.size.width))
 				//setupTanks(boardSize: boardAnchor.size)
+                setupTank()
 			}
 			
 			sessionState = .gameInProgress

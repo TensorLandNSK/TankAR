@@ -119,7 +119,7 @@ extension TanksService : MCSessionDelegate {
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
         NSLog("%@", "didFinishReceivingResourceWithName")
-        
+        self.delegate?.didDataReceived(url: localURL!, fromPeer: peerID)
     }
     
 }

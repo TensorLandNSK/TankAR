@@ -114,13 +114,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     
 	func setupLevel() {
 		let boardSize = setupBoard()
+
+        projectile.boardSize = boardSize
+        //tank.rescale(size: boardSize)
+        setupTank()
+	}
+    
+    func setupTank() {
         //if( )
         self.gameBoard.addChildNode(tank)
         self.gameBoard.addChildNode(projectile)
         //tank.boardSize = boardSize
-        projectile.boardSize = boardSize
-        //tank.rescale(size: boardSize)
-	}
+    }
 	
 	var tank = Tank()
     var projectile = Projectile()
@@ -131,9 +136,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
 		sceneView.session.add(anchor: gameBoard.anchor!)
         
-        sceneView.session.getCurrentWorldMap { (worldMap, error) in
-            self.gameManager.sendWorld(worldMap: worldMap!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
+                self.gameManager.sendWorld(worldMap: worldMap!)
+            }
         }
+        
+
 		
 		return boardSize
 	}
@@ -197,4 +206,4 @@ extension ViewController: GameManagerDelegate {
         targetWorldMap = worldMap
         sessionState = .localizingToBoard
     }
-    }
+}
