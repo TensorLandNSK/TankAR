@@ -34,6 +34,9 @@
 		C8BDCA8B2269CBD500D173E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */; };
 		C8DF921C226A046F001700AB /* Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF921A226A046F001700AB /* Tank.swift */; };
 		C8DF921D226A046F001700AB /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF921B226A046F001700AB /* Projectile.swift */; };
+		C8DF9246226B555B001700AB /* AudioControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF9245226B555B001700AB /* AudioControl.swift */; };
+		C8DF9248226B61F4001700AB /* shotTank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8DF9247226B61F4001700AB /* shotTank.mp3 */; };
+		C8DF924A226B6469001700AB /* reloading.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8DF9249226B6469001700AB /* reloading.mp3 */; };
 		CE1219E5226AC1BC006F53EE /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E4226AC1BC006F53EE /* GameManager.swift */; };
 		CE1219E7226AC27A006F53EE /* TankServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */; };
 		CE1219E9226AD6E4006F53EE /* GameManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */; };
@@ -72,6 +75,9 @@
 		C8BDCA8A2269CBD500D173E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C8DF921A226A046F001700AB /* Tank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tank.swift; sourceTree = "<group>"; };
 		C8DF921B226A046F001700AB /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
+		C8DF9245226B555B001700AB /* AudioControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioControl.swift; sourceTree = "<group>"; };
+		C8DF9247226B61F4001700AB /* shotTank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shotTank.mp3; sourceTree = "<group>"; };
+		C8DF9249226B6469001700AB /* reloading.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = reloading.mp3; sourceTree = "<group>"; };
 		CE1219E4226AC1BC006F53EE /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankServiceDelegate.swift; sourceTree = "<group>"; };
 		CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 		690AB4A022686E0D00CFB11E /* TanksAR */ = {
 			isa = PBXGroup;
 			children = (
+				C8DF9242226B505F001700AB /* Audio */,
 				416191C5226A0A6B00ED969D /* Controls */,
 				CEEA604B226A0A3700620E87 /* Game */,
 				C8DF9219226A046F001700AB /* Tank */,
@@ -210,6 +217,16 @@
 			path = Tank;
 			sourceTree = "<group>";
 		};
+		C8DF9242226B505F001700AB /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				C8DF9249226B6469001700AB /* reloading.mp3 */,
+				C8DF9247226B61F4001700AB /* shotTank.mp3 */,
+				C8DF9245226B555B001700AB /* AudioControl.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		CEEA604B226A0A3700620E87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				690AB4A422686E0D00CFB11E /* art.scnassets in Resources */,
+				C8DF9248226B61F4001700AB /* shotTank.mp3 in Resources */,
+				C8DF924A226B6469001700AB /* reloading.mp3 in Resources */,
 				690AB4AE22686E0E00CFB11E /* LaunchScreen.storyboard in Resources */,
 				690AB4AB22686E0E00CFB11E /* Assets.xcassets in Resources */,
 				690AB4A922686E0D00CFB11E /* Main.storyboard in Resources */,
@@ -312,6 +331,7 @@
 				CE1219E7226AC27A006F53EE /* TankServiceDelegate.swift in Sources */,
 				690AB4A622686E0D00CFB11E /* ViewController.swift in Sources */,
 				6969F2A4226879F800F14328 /* SessionState.swift in Sources */,
+				C8DF9246226B555B001700AB /* AudioControl.swift in Sources */,
 				6969F2AC2268807D00F14328 /* ThresholdPinchGestureRecognizer.swift in Sources */,
 				6969F2AD2268807D00F14328 /* ThresholdPanGestureRecognizer.swift in Sources */,
 				416191C7226A0AA500ED969D /* BarrelControl.swift in Sources */,

@@ -16,6 +16,7 @@ class FireControl: UIButton {
     var lastTime: Date = Date() - 5.0
     let dT = 5.0
     var delegateFire: FireDelegate!
+    let reloadingTank = AudioControl(forResource: "reloading")
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -43,7 +44,10 @@ class FireControl: UIButton {
         if (lastTime.timeIntervalSinceNow) < -dT {
             delegateFire.fire()
             lastTime = Date()
+        } else {
+            reloadingTank.onPlay(volume: 1)
         }
+        
     }
     @objc func touchUp() {
         self.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
