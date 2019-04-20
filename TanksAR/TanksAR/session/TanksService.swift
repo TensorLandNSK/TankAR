@@ -72,7 +72,7 @@ class TanksService: NSObject {
             do {
                 try serviceSession.send(data, toPeers: self.peersList, with: .reliable)
             } catch {
-                print(error)
+                print("Error while sending data from Service")
             }
         }
     }

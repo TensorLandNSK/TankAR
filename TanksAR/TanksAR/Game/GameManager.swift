@@ -14,6 +14,8 @@ class GameManager : TankServiceDelegate {
     public var delegate : GameManagerDelegate?
     var gameBoard: GameBoard!
     var sceneView: ARSCNView!
+    var hostTank = Tank()
+    var enemyTank = Tank()
     var worldMapURL: URL = {
         do {
             return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -23,22 +25,30 @@ class GameManager : TankServiceDelegate {
         }
     }()
     
-    func setupLevel() {
-        let boardSize = setupBoard()
-        //let bodyGeo = SCNPlane(width: CGFloat(boardSize.x), height: CGFloat(boardSize.y))
-        //gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: bodyGeo, options: nil))
-        //if( )
-        setupTank()
-        //tank.boardSize = boardSize
-        //projectile.boardSize = boardSize
-        //tank.rescale(size: boardSize)
+    func setupLevel(remoteGameBoard : GameBoard?) {
+        let boardSize: CGSize
+        if let board = remoteGameBoard {
+            gameBoard = board
+            boardSize = CGSize(width: CGFloat(gameBoard.scale.x), height: CGFloat(gameBoard.scale.x * gameBoard.aspectRatio))
+        } else {
+            boardSize = setupBoard()
+        }
+
+        let hostPosition = SCNVector3(0, 0, ((Float(boardSize.height) * gameBoard.aspectRatio) / 2))
+        
+        let enemyPosition = SCNVector3(0, 0, -((Float(boardSize.height) * gameBoard.aspectRatio) / 2))
+        
+        if remoteGameBoard == nil {
+            setupHostTank(position: hostPosition, rotation: 90)
+            setupEnemyTanks(position: enemyPosition, rotation: -90)
+        } else {
+            setupHostTank(position: enemyPosition, rotation: -90)
+            setupEnemyTanks(position: hostPosition, rotation: 90)
+        }
+         
+       
+
     }
-    
-    func setupTank() {
-        self.gameBoard.addChildNode(tank)
-    }
-    
-    var tank = Tank()
     
     func setupBoard() -> CGSize {
         
@@ -51,16 +61,28 @@ class GameManager : TankServiceDelegate {
                 self.sendWorld(worldMap: worldMap!)
             }
         }
-        
-        
-        
         return boardSize
+    }
+    
+    func setupHostTank(position : SCNVector3, rotation: Double) {
+        hostTank.position = position
+        hostTank.rotate(angle: rotation)
+        self.gameBoard.addChildNode(hostTank)
+    }
+    
+    func setupEnemyTanks(position : SCNVector3, rotation: Double) {
+        enemyTank.position = position
+        enemyTank.rotate(angle: rotation)
+        self.gameBoard.addChildNode(enemyTank)
     }
     
     var projectile: Projectile?
     
-    
     func fire() {
+        fire(tank: hostTank)
+    }
+    
+    private func fire(tank: Tank) {
         
         let cannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
         //        projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
@@ -68,17 +90,22 @@ class GameManager : TankServiceDelegate {
         self.gameBoard.addChildNode(projectile!)
     }
 
-    
     func rotateBarrel(orientation: CGPoint) -> Double {
+        sendBarrelMovement(vector: orientation)
+        return rotateBarrel(tank: hostTank, orientation: orientation)
+    }
+    
+    private func rotateBarrel(tank: Tank, orientation: CGPoint) -> Double {
         rotate(orientation: orientation)
         return tank.cannonAngle
     }
     
     func moveTank(orientation: CGPoint) {
-        move(orientation: orientation)
+        sendTankMovement(vector: orientation)
+        move(tank: hostTank, orientation: orientation)
     }
     
-    func move(orientation: CGPoint) {
+    private func move(tank: Tank, orientation: CGPoint) {
         let speed: Double = 0.005
         let angleSpeed: Double = 0.5
         
@@ -102,6 +129,10 @@ class GameManager : TankServiceDelegate {
     }
     
     func rotate(orientation: CGPoint) {
+        rotate(tank: hostTank, orientation: orientation)
+    }
+    
+    private func rotate(tank : Tank, orientation: CGPoint) {
         let turretAngleSpeed: Double = 1.0 // Degree
         let cannonAngleSpeed: Double = 2.0 // Degree
         var turretAngle: Double
@@ -181,9 +212,9 @@ class GameManager : TankServiceDelegate {
             let mapUnarchived = self.unarchive(worldMapData: worldMap!)
             delegate?.didWorldReceieved(worldMap: mapUnarchived!)
         case .tankMovement(let vector):
-            delegate?.didTankMovementReceived(vector: vector)
+            move(tank: enemyTank, orientation: vector)
         case .barrelMovement(let vector):
-            delegate?.didBarrelMovementReceived(vector: vector)
+            rotate(tank: enemyTank, orientation: vector)
         }
     }
     

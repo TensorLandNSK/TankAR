@@ -89,12 +89,12 @@ class Tank : SCNNode {
     
     func rotate(angle: Double) {
         // Rotate full tank
-        tankRotateAngle += angle*Double.pi/180.0
+        tankRotateAngle -= angle*Double.pi/180.0
         self.eulerAngles.y = Float(tankRotateAngle)
     }
     
     func rotateTurret(angle: Double) {
-        let newTurretAngle = turretAngle + angle*Double.pi/180.0
+        let newTurretAngle = turretAngle - angle*Double.pi/180.0
         if newTurretAngle <= turretMaxAngle && newTurretAngle >= turretMinAngle {
             turretAngle = newTurretAngle
             // Turn turret SCNNode [2]
