@@ -64,7 +64,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		// Set the scene to the view
 		sceneView.scene = scene
 		sceneView.scene.rootNode.addChildNode(gameBoard)
+        sceneView.scene.physicsWorld.contactDelegate = self
         sceneView.scene.physicsWorld.speed = 0.05
+//        sceneView.scene.physicsWorld.gravity = SCNVector3( 0.0, 0.0, 0.0 )
         
 		sessionState = .lookingForSurface
 		setupRecognizers()

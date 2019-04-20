@@ -59,11 +59,11 @@ class GameManager : TankServiceDelegate {
         gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
         sceneView.session.add(anchor: gameBoard.anchor!)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
-                self.sendWorld(worldMap: worldMap!)
-            }
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
+//                self.sendWorld(worldMap: worldMap!)
+//            }
+//        }
         return boardSize
     }
     
@@ -89,26 +89,37 @@ class GameManager : TankServiceDelegate {
     
     private func fire(tank: Tank) {
         
-        
-        
-        let maxCannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
-        let minCannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.min
-        let scale: Float = 0.05
-        //let frontCannonPosition = SCNVector3( 0.0, 0.0, -2.0 )
-        let frontCannonPosition = SCNVector3((maxCannonPosition!.x - minCannonPosition!.x) * scale / 2.0, maxCannonPosition!.y * scale, (maxCannonPosition!.z - minCannonPosition!.z) * scale / 2.0 )
-        
-        //let projectilePosition = tank.position
-        
-//        let projectileVitesse: Double = 1.0
-        let vitesse = SCNVector3(0.0, maxCannonPosition!.y - minCannonPosition!.y, (maxCannonPosition!.z - minCannonPosition!.z) / 2.0)
-        projectile = Projectile(tank: tank)
-//        projectile = Projectile(initialPosition: frontCannonPosition, initialDirection: vitesse)
-        self.gameBoard.addChildNode(projectile!)
-        
-
-        
+		let proj = fire(vel: 5, tank: tank)
+		
+        self.sceneView.scene.rootNode.addChildNode(proj.node)
     }
+	
+	func fire(vel: Float, tank: Tank) -> Projectile {
+		
+		let barrel = tank.tanksChilds[0].childNodes[0]//.childNode(withName: "Cannon", recursively: true)!
+		
+		let proj = Projectile.spawnProjectile()
+		let floats = simd_float3(barrel.worldUp)
+		let normalizedBarrelFront = simd.normalize(floats) * (1.0)
+		proj.node.simdPosition = barrel.simdWorldPosition //+ normalizedBarrelFront
+		
+        let name = tank == hostTank ? "host" : "enemy"
+        
+        proj.launchProjectile(position: SCNVector3Zero, x: normalizedBarrelFront.x * vel, y: normalizedBarrelFront.y * vel, z: normalizedBarrelFront.z * vel, name: name)
 
+		return proj
+	}
+
+    func createTrail(at: SCNVector3) {
+        let trail = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil)!
+        let node = SCNNode()
+        node.addParticleSystem(trail)
+        node.scale = SCNVector3(0.001, 0.001, 0.001)
+         sceneView.scene.rootNode.addChildNode(node)
+        node.worldPosition = at
+       
+    }
+    
     func rotateBarrel(orientation: CGPoint) -> Double {
         sendBarrelMovement(vector: orientation)
         return rotateBarrel(tank: hostTank, orientation: orientation)
@@ -251,5 +262,25 @@ class GameManager : TankServiceDelegate {
         let data = try! Data(contentsOf: url)
         let mapUnarchived = self.unarchive(worldMapData: data)
         delegate?.didWorldReceieved(worldMap: mapUnarchived!)
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.ground ) || ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.ground ) {
+            print("Collision with ground")
+        } else if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeA.name == "host" {
+            if contact.nodeB == enemyTank {
+                createTrail(at: contact.nodeA.worldPosition)
+                contact.nodeA.removeFromParentNode()
+//                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
+//                NSLog("hit")
+            }
+        } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "host"{
+            if contact.nodeA == enemyTank {
+                createTrail(at: contact.nodeB.worldPosition)
+                contact.nodeB.removeFromParentNode()
+//                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
+//                NSLog("hit")
+            }
+        }
     }
 }
