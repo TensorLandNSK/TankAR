@@ -155,6 +155,19 @@
                                     <action selector="fireControl:" destination="BV1-FR-VrT" eventType="valueChanged" id="qGn-pC-vhp"/>
                                 </connections>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2X-sa-Q5O">
+                                <rect key="frame" x="87.5" y="70" width="200.5" height="84"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="status">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="72" name="TrebuchetMS-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -164,11 +177,13 @@
                             <constraint firstItem="EJH-1N-SjA" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="15" id="P6U-3D-V2W"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="EJH-1N-SjA" secondAttribute="bottom" constant="30" id="WCg-92-bpD"/>
+                            <constraint firstItem="b2X-sa-Q5O" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="50" id="X8u-Vk-XFq"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="gxz-XK-5RE" secondAttribute="trailing" constant="15" id="aFl-8d-At5"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="lnJ-mz-Wa7" secondAttribute="bottom" constant="170" id="bCj-ia-68U"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="gxz-XK-5RE" secondAttribute="bottom" constant="30" id="o9J-Bx-dOK"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
+                            <constraint firstItem="b2X-sa-Q5O" firstAttribute="centerX" secondItem="fQZ-KI-GVf" secondAttribute="centerX" id="spy-YR-UeS"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="SZV-CH-Tda" secondAttribute="trailing" constant="15" id="uBO-Zk-ghJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
@@ -179,6 +194,8 @@
                         <outlet property="barrelControlTank" destination="gxz-XK-5RE" id="OJw-ph-iPQ"/>
                         <outlet property="fireControl" destination="SZV-CH-Tda" id="RFl-xi-Ee6"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="statusLabel" destination="b2X-sa-Q5O" id="Nb3-3t-yN6"/>
+                        <segue destination="FQK-QY-C35" kind="show" identifier="showMain" id="8ab-ey-uBc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

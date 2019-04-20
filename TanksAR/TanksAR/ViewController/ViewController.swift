@@ -144,6 +144,44 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		// Reset tracking and/or remove existing anchors if consistent tracking is required
 		
 	}
+    
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    @objc func showMain() {
+        self.performSegue(withIdentifier: "showMain", sender: nil)
+    }
+    
+    func onWinnerGame(){
+        angleDisplay.isHidden = true
+        barrelControl.isHidden = true
+        barrelControlTank.isHidden = true
+        fireControl.isHidden = true
+        
+        statusLabel.textColor = .green
+        statusLabel.text? = "EZ WIN"
+        statusLabel.isHidden = false
+        
+        //let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
+        //sceneView.addGestureRecognizer(gs)
+        
+        //TanksService.shared().serviceSession.disconnect()
+    }
+    
+    func onLoserGame(){
+        angleDisplay.isHidden = true
+        barrelControl.isHidden = true
+        barrelControlTank.isHidden = true
+        fireControl.isHidden = true
+        
+        statusLabel.textColor = .red
+        statusLabel.text = "YOU LOST"
+        statusLabel.isHidden = false
+        
+        //let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
+        //sceneView.addGestureRecognizer(gs)
+        
+        //TanksService.shared().serviceSession.disconnect()
+    }
 }
 
 // MARK: - ARSessionDelegate
