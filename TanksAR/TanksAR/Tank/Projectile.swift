@@ -21,6 +21,9 @@ class Projectile : SCNNode {
     
 //    init(initialPosition: SCNVector3, initialDirection: SCNVector3) {
     init(tank: Tank) {
+    var scaleFactor = SCNVector3(0.5, 0.5, 0.5)
+    
+    override init() {
         // Create a new scene
         let pojectileScene = SCNScene(named: "art.scnassets/ProjectileModel.dae")!
         projectileChilds = pojectileScene.rootNode.childNodes
@@ -41,12 +44,22 @@ class Projectile : SCNNode {
         }
         
         self.scale = scaleFactor
+        self.position = SCNVector3(0.0, 3, 0.0)
         
-        let min = projectileChilds[2].boundingBox.min
-        let max = projectileChilds[2].boundingBox.max
-        let pHeight = CGFloat(max.y - min.y)
-        let pRadius = CGFloat((max.x - min.x) / 2)
-        let projectileGeo = SCNCylinder(radius: pRadius, height: pHeight)
+//        let min = self.projectileChilds[2].boundingBox.min
+//        let max = self.projectileChilds[2].boundingBox.max
+//        let pHeight = CGFloat(max.y - min.y)
+//        let pRadius = CGFloat((max.x - min.x) / 2)
+//        let projectileGeo = SCNCylinder(radius: pRadius, height: pHeight)
+        
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: self))
+        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.projectile.rawValue
+        
+        if #available(iOS 9.0, *) {
+            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.ground.rawValue | ViewController.colliderCategory.tank.rawValue
+        } else {
+            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.ground.rawValue | ViewController.colliderCategory.tank.rawValue
+        }
         
         self.position = tank.position
         self.eulerAngles.y = Float(tank.turretAngle + tank.tankRotateAngle)
@@ -90,7 +103,7 @@ class Projectile : SCNNode {
 
         self.physicsBody?.applyForce(direction!, at: self.worldPosition, asImpulse: true)
     }
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

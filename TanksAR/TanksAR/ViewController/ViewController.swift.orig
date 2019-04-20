@@ -13,13 +13,61 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
 
     func fire() {
+<<<<<<< HEAD
+         projectile = Projectile(initialPosition: SCNVector3(0.1, 0.0, 0.5), initialDirection: SCNVector3(1.0, 0.0, 0.0))
+         self.gameBoard.addChildNode(projectile!)
+    }
+    
+    func rotate(orientation: CGPoint, sender: BarrelControl) {
+        if sender == barrelControl {
+            rotate(orientation: orientation)
+            angleDisplay.angle = CGFloat(tank.cannonAngle)
+        } else if sender == barrelControlTank {
+            move(orientation: orientation)
+        }
+    }
+    
+    func move(orientation: CGPoint) {
+        tank.move(direction: SCNVector3(0.0, 0.0, 0.005))
+    }
+    
+    func rotate(orientation: CGPoint) {
+        let turretAngleSpeed: Double = 1.0 // Degree
+        let cannonAngleSpeed: Double = 2.0 // Degree
+        var turretAngle: Double
+        var cannonAngle: Double
+        if orientation.x > 0 {
+            turretAngle = turretAngleSpeed
+        }
+        else if orientation.x < 0 {
+            turretAngle = -turretAngleSpeed
+        }
+        else {
+            turretAngle = 0.0
+        }
+        
+        if orientation.y > 0 {
+            cannonAngle = cannonAngleSpeed
+        }
+        else if orientation.y < 0 {
+            cannonAngle = -cannonAngleSpeed
+        }
+        else {
+            cannonAngle = 0.0
+        }
+        
+        tank.adjustCannon(angle: cannonAngle)
+        tank.rotateTurret(angle: turretAngle)
+=======
         gameManager.fire()
+>>>>>>> master
     }
     
     /*
      angleDisplay.angle отвечает за угол стрелки показателя наклона дула в радианах
     */
-        
+    
+	
 	@IBOutlet var sceneView: ARSCNView!
 	
 	var gameBoard = GameBoard()
@@ -35,8 +83,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     @IBOutlet var barrelControlTank: BarrelControl!
     
     @IBOutlet var angleDisplay: AngleDisplay!
-    
-    @IBOutlet weak var enemyHPBar: UIProgressView!
     
     var sessionState: SessionState = .setup {
 		didSet {
@@ -63,7 +109,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		// Set the scene to the view
 		sceneView.scene = scene
 		sceneView.scene.rootNode.addChildNode(gameBoard)
-        sceneView.scene.physicsWorld.speed = 0.05
         
 		sessionState = .lookingForSurface
 		setupRecognizers()
@@ -74,8 +119,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         TanksService.shared().delegate = gameManager
         gameManager.gameBoard = gameBoard
         gameManager.sceneView = sceneView
-        
-        enemyHPBar.transform = CGAffineTransform(rotationAngle: .pi)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -95,12 +138,41 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		sceneView.session.pause()
 	}
     
+<<<<<<< HEAD
+	func setupLevel() {
+		let boardSize = setupBoard()
+        //let bodyGeo = SCNPlane(width: CGFloat(boardSize.x), height: CGFloat(boardSize.y))
+        //gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: bodyGeo, options: nil))
+        //if( )
+        setupTank()
+        //tank.boardSize = boardSize
+        //projectile.boardSize = boardSize
+        //tank.rescale(size: boardSize)
+	}
+	
+    func setupTank() {
+        self.gameBoard.addChildNode(tank)
+    }    
+	var tank = Tank()
+	
+	func setupBoard() -> CGSize {
+		
+		let boardSize = CGSize(width: CGFloat(gameBoard.scale.x), height: CGFloat(gameBoard.scale.x * gameBoard.aspectRatio))
+		gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
+		sceneView.session.add(anchor: gameBoard.anchor!)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
+                self.gameManager.sendWorld(worldMap: worldMap!)
+            }
+=======
     func rotate(orientation: CGPoint, sender: BarrelControl) {
         if sender == barrelControl {
             let angle = gameManager.rotateBarrel(orientation: orientation)
             angleDisplay.angle = CGFloat(angle)
         } else if sender == barrelControlTank {
             gameManager.moveTank(orientation: orientation)
+>>>>>>> master
         }
     }
 	
@@ -148,44 +220,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
 		// Reset tracking and/or remove existing anchors if consistent tracking is required
 		
 	}
-    
-    @IBOutlet weak var statusLabel: UILabel!
-    
-    @objc func showMain() {
-        self.performSegue(withIdentifier: "showMain", sender: nil)
-    }
-    
-    func onWinnerGame(){
-        angleDisplay.isHidden = true
-        barrelControl.isHidden = true
-        barrelControlTank.isHidden = true
-        fireControl.isHidden = true
-        
-        statusLabel.textColor = .green
-        statusLabel.text? = "EZ WIN"
-        statusLabel.isHidden = false
-        
-        //let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
-        //sceneView.addGestureRecognizer(gs)
-        
-        //TanksService.shared().serviceSession.disconnect()
-    }
-    
-    func onLoserGame(){
-        angleDisplay.isHidden = true
-        barrelControl.isHidden = true
-        barrelControlTank.isHidden = true
-        fireControl.isHidden = true
-        
-        statusLabel.textColor = .red
-        statusLabel.text = "YOU LOST"
-        statusLabel.isHidden = false
-        
-        //let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
-        //sceneView.addGestureRecognizer(gs)
-        
-        //TanksService.shared().serviceSession.disconnect()
-    }
 }
 
 // MARK: - ARSessionDelegate

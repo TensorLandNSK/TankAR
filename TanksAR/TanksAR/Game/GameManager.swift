@@ -15,10 +15,12 @@ class GameManager : TankServiceDelegate {
     public var delegate : GameManagerDelegate?
     var gameBoard: GameBoard!
     var sceneView: ARSCNView!
+    
     var hostTank = Tank()
     var enemyTank = Tank()
     let shotTank = AudioControl(forResource: "shotTank")
     //let explodeTank = AudioControl(forResource: "explodeTank")
+    
     var worldMapURL: URL = {
         do {
             return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -53,17 +55,52 @@ class GameManager : TankServiceDelegate {
 
     }
     
+    func setupLevel() {
+        let boardSize = setupBoard()
+        //let bodyGeo = SCNPlane(width: CGFloat(boardSize.x), height: CGFloat(boardSize.y))
+        //gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: bodyGeo, options: nil))
+        //if( )
+        setupTank()
+        //tank.boardSize = boardSize
+        //projectile.boardSize = boardSize
+        //tank.rescale(size: boardSize)
+    }
+    
+    func setupTank() {
+//        tank.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: tank))
+//        tank.physicsBody!.categoryBitMask = ViewController.colliderCategory.tank.rawValue
+//        if #available(iOS 9.0, *) {
+//            tank.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile.rawValue
+//        } else {
+//            tank.physicsBody!.collisionBitMask = ViewController.colliderCategory.projectile.rawValue
+//        }
+        gameBoard.addChildNode(tank)
+    }
+    
+    var tank = Tank()
+    
     func setupBoard() -> CGSize {
         
         let boardSize = CGSize(width: CGFloat(gameBoard.scale.x), height: CGFloat(gameBoard.scale.x * gameBoard.aspectRatio))
         gameBoard.anchor = BoardAnchor(transform: normalize(gameBoard.simdTransform), size: boardSize)
         sceneView.session.add(anchor: gameBoard.anchor!)
         
+//        gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: gameBoard))
+//        gameBoard.physicsBody!.mass = 1000
+//        gameBoard.physicsBody!.categoryBitMask = ViewController.colliderCategory.ground.rawValue
+//
+//        if #available(iOS 9.0, *) {
+//            gameBoard.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile.rawValue
+//        } else {
+//            gameBoard.physicsBody!.collisionBitMask = ViewController.colliderCategory.projectile.rawValue
+//        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.sceneView.session.getCurrentWorldMap { (worldMap, error) in
                 self.sendWorld(worldMap: worldMap!)
             }
         }
+        
         return boardSize
     }
     
@@ -115,6 +152,42 @@ class GameManager : TankServiceDelegate {
     }
     
     private func rotateBarrel(tank: Tank, orientation: CGPoint) -> Double {
+        return boardSize
+    }
+    
+    var projectile = Projectile()
+    
+    func createTrail() -> SCNNode {
+        let trail = SCNParticleSystem(named: "Test.scnp", inDirectory: nil)!
+        trail.particleSize = 0.005
+        trail.particleLifeSpan = 0.005
+        let node = SCNNode()
+        node.addParticleSystem(trail)
+        return node
+    }
+    
+    func fire() {
+        //let cannonPosition = tank.tanksChilds[2].childNode(withName: "Cannon", recursively: true)?.geometry?.boundingBox.max
+        projectile.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: projectile))
+        projectile.physicsBody!.categoryBitMask = ViewController.colliderCategory.projectile.rawValue
+        if #available(iOS 9.0, *) {
+            projectile.physicsBody!.contactTestBitMask = ViewController.colliderCategory.ground.rawValue | ViewController.colliderCategory.tank.rawValue
+        } else {
+            projectile.physicsBody!.collisionBitMask = ViewController.colliderCategory.ground.rawValue | ViewController.colliderCategory.tank.rawValue
+        }
+        //projectile = Projectile(initialPosition: cannonPosition!, initialDirection: SCNVector3(1.0, 0.0, 0.0))
+        gameBoard.addChildNode(projectile)
+        
+        let trailEmitter = createTrail()
+        trailEmitter.scale = SCNVector3(0.1, 0.1, 0.1)
+        trailEmitter.position = SCNVector3(0.0, 0.5, 0.0)
+        let action = SCNAction.sequence([SCNAction.scale(by: 5, duration: 10)])
+        trailEmitter.runAction(action)
+        gameBoard.addChildNode(trailEmitter)
+    }
+
+    
+    func rotateBarrel(orientation: CGPoint) -> Double {
         rotate(orientation: orientation)
         return tank.cannonAngle
     }
@@ -125,6 +198,10 @@ class GameManager : TankServiceDelegate {
     }
     
     private func move(tank: Tank, orientation: CGPoint) {
+        move(orientation: orientation)
+    }
+    
+    func move(orientation: CGPoint) {
         let speed: Double = 0.005
         let angleSpeed: Double = 0.5
         
