@@ -26,7 +26,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     }
     
     func move(orientation: CGPoint) {
-        tank.move(direction: SCNVector3(0.1, 0.0, 0.0))
+        tank.move(direction: SCNVector3(0.0, 0.0, 0.005))
     }
     
     func rotate(orientation: CGPoint) {
