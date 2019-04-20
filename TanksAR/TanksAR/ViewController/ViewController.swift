@@ -19,7 +19,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     /*
      angleDisplay.angle отвечает за угол стрелки показателя наклона дула в радианах
     */
-        
+    
+	
 	@IBOutlet var sceneView: ARSCNView!
 	
 	var gameBoard = GameBoard()

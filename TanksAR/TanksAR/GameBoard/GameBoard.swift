@@ -83,17 +83,9 @@ class GameBoard: SCNNode {
 		addChildNode(borderNode)
         
         //let boardGeo = SCNBox()
-        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self))
-        self.physicsBody!.mass = 1000
-        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.ground.rawValue
-        
-        if #available(iOS 9.0, *) {
-            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile.rawValue
-        } else {
-            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.projectile.rawValue
-        }
+        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: nil)
     }
-    
+	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("\(#function) has not been implemented")
 	}

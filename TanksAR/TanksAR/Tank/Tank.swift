@@ -34,11 +34,10 @@ class Tank : SCNNode {
     let turretMinAngle: Double = -180.0*Double.pi/180.0
     let cannonMaxAngle: Double = 30.0*Double.pi/180.0
     let cannonMinAngle: Double = -10.0*Double.pi/180.0
-    let scene: SCNScene
     
     override init() {
         // Create a new scene
-        scene = SCNScene(named: "art.scnassets/TankModel.dae")!
+        let scene = SCNScene(named: "art.scnassets/TankModel.dae")!
         tanksChilds = scene.rootNode.childNodes
         
         self.tankPosition = scene.rootNode.position
@@ -54,14 +53,6 @@ class Tank : SCNNode {
         }
         
         self.scale = scaleFactor
-        
-        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self))
-        self.physicsBody!.categoryBitMask = ViewController.colliderCategory.tank.rawValue
-        if #available(iOS 9.0, *) {
-            self.physicsBody!.contactTestBitMask = ViewController.colliderCategory.projectile.rawValue
-        } else {
-            self.physicsBody!.collisionBitMask = ViewController.colliderCategory.projectile.rawValue
-        }
         
         //tanksChilds[2].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[2].childNodes[0].pivot, Float(0.0), Float(1.8), Float(-2.0))
         var yTranslate = Double(2.0)
@@ -89,9 +80,9 @@ class Tank : SCNNode {
     }
     
     func move(direction: SCNVector3) {
-//        tankPosition.x += direction.x
-//        tankPosition.y += direction.y
-//        tankPosition.z += direction.z
+        tankPosition.x += direction.x
+        tankPosition.y += direction.y
+        tankPosition.z += direction.z
         // Move tank SCNNode
         self.localTranslate(by: direction)
     }
