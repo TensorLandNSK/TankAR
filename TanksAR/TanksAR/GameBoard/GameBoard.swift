@@ -81,9 +81,7 @@ class GameBoard: SCNNode {
 		borderNode.name = "border node"
 		
 		addChildNode(borderNode)
-		
-		
-	}
+    }
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("\(#function) has not been implemented")

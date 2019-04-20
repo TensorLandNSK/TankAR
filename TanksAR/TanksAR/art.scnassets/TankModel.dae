@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2019-04-20T04:58:32Z</created>
-  <modified>2019-04-20T04:58:32Z</modified>
+  <created>2019-04-20T06:08:11Z</created>
+  <modified>2019-04-20T06:08:11Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -592,7 +592,7 @@
     </node>
    </node>
    <node id="Wheels_Object_3" name="Wheels_Object_3">
-    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 -0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
+    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
     <instance_geometry url="#geometry16">
      <bind_material>
       <technique_common>
@@ -604,7 +604,7 @@
     </instance_geometry>
    </node>
    <node id="Track_Left_Object_2" name="Track_Left_Object_2">
-    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 -0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
+    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
     <instance_geometry url="#geometry21">
      <bind_material>
       <technique_common>
@@ -616,7 +616,7 @@
     </instance_geometry>
    </node>
    <node id="Hull_Object_1_002" name="Body">
-    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 -0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
+    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
     <instance_geometry url="#geometry26">
      <bind_material>
       <technique_common>
@@ -628,7 +628,7 @@
     </instance_geometry>
    </node>
    <node id="Track_Right_Object_1_001" name="Track_Right_Object_1_001">
-    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 -0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
+    <matrix>1 0 0 0 0 5.960464e-08 -0.9999999 0 0 0.9999999 5.960464e-08 0 0 0 0 1 </matrix>
     <instance_geometry url="#geometry31">
      <bind_material>
       <technique_common>
