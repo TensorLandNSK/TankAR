@@ -27,7 +27,7 @@ extension ViewController {
 		
 		if sessionState == .setupLevel {
 			// this will advance the session state
-			gameManager.setupLevel()
+			gameManager.setupLevel(remoteGameBoard: nil)
             sessionState = .gameInProgress
 			return
 		}
@@ -93,7 +93,8 @@ extension ViewController {
 				gameBoard.simdTransform = boardAnchor.transform
 				gameBoard.simdScale = float3(Float(boardAnchor.size.width))
 				//setupTanks(boardSize: boardAnchor.size)
-                gameManager.setupTank()
+                //gameManager.setupTank()
+                gameManager.setupLevel(remoteGameBoard: gameBoard)
 			}
 			
 			sessionState = .gameInProgress
