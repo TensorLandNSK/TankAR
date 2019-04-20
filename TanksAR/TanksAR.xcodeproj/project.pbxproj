@@ -103,6 +103,7 @@
 				69D310CC2268732400DAB286 /* utils */,
 				69D310C7226872FE00DAB286 /* World Map Loading */,
 				69D310C22268725000DAB286 /* GameBoard */,
+				CE4C9F94226A1EDB00A15546 /* AppDelegate.swift */,
 				690AB4A322686E0D00CFB11E /* art.scnassets */,
 				690AB4A722686E0D00CFB11E /* Main.storyboard */,
 				690AB4AA22686E0E00CFB11E /* Assets.xcassets */,
@@ -146,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				69D310C42268725000DAB286 /* GameBoard.swift */,
-				CE4C9F94226A1EDB00A15546 /* AppDelegate.swift */,
 			);
 			path = GameBoard;
 			sourceTree = "<group>";
