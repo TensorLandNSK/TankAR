@@ -14,6 +14,8 @@ class TanksService: NSObject {
     
     private let maxPeersAmount = 1
     
+    private var delegate : TankServiceDelegate?
+    
     private var serviceSession : MCSession!
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     
@@ -28,9 +30,10 @@ class TanksService: NSObject {
     
     private override init() {
         self.serviceSession = MCSession(peer: myPeerId)
+        
         self.serviceAdvertiser = MCAdvertiserAssistant(serviceType: serviceType, discoveryInfo: nil, session: serviceSession)
         super.init()
-        
+        serviceSession.delegate = self
         //self.serviceAdvertiser.startAdvertisingPeer()
     }
     
@@ -56,7 +59,15 @@ class TanksService: NSObject {
         self.serviceAdvertiser.stop()
     }
     
-    public func sendData(data: Data) {
+    public func sendData(url: URL) {
+        if self.peersList.count > 0 {
+            for peer in peersList {
+                serviceSession.sendResource(at: url, withName: "gameData", toPeer: peer)
+            }
+        }
+    }
+    
+    public func sendData(data : Data) {
         if self.peersList.count > 0 {
             do {
                 try serviceSession.send(data, toPeers: self.peersList, with: .reliable)
@@ -92,8 +103,7 @@ extension TanksService : MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
-        let jsonDecoder = JSONDecoder()
-       // try jsonDecoder.decode(, from: )
+        self.delegate?.didDataReceived(data: data, fromPeer: peerID)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -102,10 +112,12 @@ extension TanksService : MCSessionDelegate {
     
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
         NSLog("%@", "didStartReceivingResourceWithName")
+        
     }
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
         NSLog("%@", "didFinishReceivingResourceWithName")
+        
     }
     
 }
