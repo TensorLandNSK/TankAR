@@ -114,7 +114,7 @@ class GameManager : TankServiceDelegate {
         let trail = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil)!
         let node = SCNNode()
         node.addParticleSystem(trail)
-        node.scale = SCNVector3(0.001, 0.001, 0.001)
+        node.scale = SCNVector3(0.2, 0.2, 0.2)
          sceneView.scene.rootNode.addChildNode(node)
         node.worldPosition = at
        
@@ -269,14 +269,14 @@ class GameManager : TankServiceDelegate {
             print("Collision with ground")
         } else if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeA.name == "host" {
             if contact.nodeB == enemyTank {
-                createTrail(at: contact.nodeA.worldPosition)
+                createTrail(at: contact.contactPoint )
                 contact.nodeA.removeFromParentNode()
 //                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
 //                NSLog("hit")
             }
         } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "host"{
             if contact.nodeA == enemyTank {
-                createTrail(at: contact.nodeB.worldPosition)
+                createTrail(at: contact.contactPoint )
                 contact.nodeB.removeFromParentNode()
 //                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
 //                NSLog("hit")
