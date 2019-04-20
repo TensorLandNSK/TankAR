@@ -10,7 +10,11 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
+    func fire() {
+        
+    }
+    
     func rotate(orientation: CGPoint) {
         let turretAngleSpeed: Double = 1.0 // Degree
         let cannonAngleSpeed: Double = 2.0 // Degree
@@ -49,13 +53,45 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 
     @IBOutlet var barrelControl: BarrelControl!
     
-	var sessionState: SessionState = .setup {
+    @IBOutlet var fireControl: FireControl!
+    
+    @IBOutlet var barrelControlTank: BarrelControl!
+    
+    var sessionState: SessionState = .setup {
 		didSet {
 			guard oldValue != sessionState else { return }
 			configureARSession()
 		}
 	}
+    
+    var worldMapURL: URL = {
+        do {
+            return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .appendingPathComponent("worldMapURL")
+        } catch {
+            fatalError("Error getting world map URL from document directory.")
+        }
+    }()
+    
+    func archive(worldMap: ARWorldMap) throws {
+        let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
+        try data.write(to: self.worldMapURL, options: [.atomic])
+    }
+    
+    func unarchive(worldMapData data: Data) -> ARWorldMap? {
+        guard let unarchievedObject = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data),
+            let worldMap = unarchievedObject else { return nil }
+        return worldMap
+    }
 	
+    func retrieveWorldMapData(from url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: self.worldMapURL)
+        } catch {
+            fatalError("Error retrieving world map data.")
+        }
+    }
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -77,6 +113,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate {
 		setupRecognizers()
         
         barrelControl.delegate = self
+        fireControl.delegateFire = self
+        barrelControlTank.delegate = self
 
 	}
 	

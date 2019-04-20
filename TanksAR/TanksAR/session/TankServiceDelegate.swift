@@ -1,5 +1,5 @@
 //
-//  GameManager.swift
+//  TankServiceDelegate.swift
 //  TanksAR
 //
 //  Created by tensor_guest on 20/04/2019.
@@ -9,8 +9,6 @@
 import Foundation
 import MultipeerConnectivity
 
-class GameManager : TankServiceDelegate {
-    func didDataReceived(data : Data, fromPeer peerID : MCPeerID) {
-        
-    }
+protocol TankServiceDelegate {
+    func didDataReceived(data : Data, fromPeer peerID : MCPeerID)
 }

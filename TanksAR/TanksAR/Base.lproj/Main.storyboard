@@ -18,33 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-lH-8eg">
-                                <rect key="frame" x="132" y="551" width="115" height="30"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="36"/>
-                                <state key="normal" title="START"/>
-                                <connections>
-                                    <action selector="onStartStopTapped:" destination="FQK-QY-C35" eventType="touchUpInside" id="sY8-uY-fZN"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksd-Ha-ILb">
                                 <rect key="frame" x="67" y="140" width="240" height="301"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YZg-kz-ggh">
-                                <rect key="frame" x="105" y="637" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YZg-kz-ggh">
+                                <rect key="frame" x="101" y="637" width="20" height="20"/>
                             </activityIndicatorView>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="Waiting for connection..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRp-Ej-fD1">
-                                <rect key="frame" x="133" y="640" width="166" height="17"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="Waiting for connection..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRp-Ej-fD1">
+                                <rect key="frame" x="129" y="640" width="162" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-TI-yXg">
-                                <rect key="frame" x="146" y="597" width="83" height="29"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-TI-yXg">
+                                <rect key="frame" x="146" y="568" width="83" height="52"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="JOIN">
@@ -59,9 +47,30 @@
                                     <action selector="onJoinTapped:" destination="FQK-QY-C35" eventType="touchUpInside" id="7mY-Xl-Fql"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-lH-8eg">
+                                <rect key="frame" x="130" y="505" width="115" height="53"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="36"/>
+                                <state key="normal" title="START"/>
+                                <connections>
+                                    <action selector="onStartStopTapped:" destination="FQK-QY-C35" eventType="touchUpInside" id="sY8-uY-fZN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="trailing" secondItem="cRp-Ej-fD1" secondAttribute="trailing" constant="84" id="5Rn-lA-16g"/>
+                            <constraint firstItem="cZB-TI-yXg" firstAttribute="leading" secondItem="Bkd-NW-cpd" secondAttribute="leading" constant="146" id="8Ib-Re-PdS"/>
+                            <constraint firstItem="cZB-TI-yXg" firstAttribute="top" secondItem="PzK-lH-8eg" secondAttribute="bottom" constant="10" id="DtL-sK-uFQ"/>
+                            <constraint firstItem="YZg-kz-ggh" firstAttribute="leading" secondItem="Bkd-NW-cpd" secondAttribute="leading" constant="101" id="KA3-0a-Xjp"/>
+                            <constraint firstItem="cRp-Ej-fD1" firstAttribute="top" secondItem="cZB-TI-yXg" secondAttribute="bottom" constant="20" id="O8t-Y7-WxB"/>
+                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="trailing" secondItem="PzK-lH-8eg" secondAttribute="trailing" constant="130" id="Pv3-Kv-SPH"/>
+                            <constraint firstItem="PzK-lH-8eg" firstAttribute="leading" secondItem="Bkd-NW-cpd" secondAttribute="leading" constant="130" id="fkT-17-G7G"/>
+                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="bottom" secondItem="cRp-Ej-fD1" secondAttribute="bottom" constant="10" id="kyz-Oo-gpq"/>
+                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="trailing" secondItem="cZB-TI-yXg" secondAttribute="trailing" constant="146" id="m6N-Tl-igw"/>
+                            <constraint firstItem="cRp-Ej-fD1" firstAttribute="leading" secondItem="YZg-kz-ggh" secondAttribute="trailing" constant="8" id="uqF-zM-vfU"/>
+                            <constraint firstItem="Bkd-NW-cpd" firstAttribute="bottom" secondItem="YZg-kz-ggh" secondAttribute="bottom" constant="10" id="vkb-h6-1qF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Bkd-NW-cpd"/>
                     </view>
                     <connections>
@@ -87,6 +96,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </arscnView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxz-XK-5RE" userLabel="Barrel ControlRight" customClass="BarrelControl" customModule="TanksAR" customModuleProvider="target">
+                                <rect key="frame" x="255" y="527" width="110" height="110"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="F3s-i0-qXL"/>
+                                    <constraint firstAttribute="width" constant="110" id="KzM-hr-vWu"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJH-1N-SjA" customClass="BarrelControl" customModule="TanksAR" customModuleProvider="target">
                                 <rect key="frame" x="10" y="527" width="110" height="110"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,25 +112,43 @@
                                     <constraint firstAttribute="height" constant="110" id="ckP-Sv-FhK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZV-CH-Tda" customClass="FireControl" customModule="TanksAR" customModuleProvider="target">
+                                <rect key="frame" x="285" y="427" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="QAa-zF-YHa"/>
+                                    <constraint firstAttribute="width" constant="80" id="bNJ-Aq-ODg"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="fireControl:" destination="BV1-FR-VrT" eventType="valueChanged" id="qGn-pC-vhp"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="SZV-CH-Tda" secondAttribute="bottom" constant="160" id="9kS-a8-qPL"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
                             <constraint firstItem="EJH-1N-SjA" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="P6U-3D-V2W"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="EJH-1N-SjA" secondAttribute="bottom" constant="30" id="WCg-92-bpD"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="gxz-XK-5RE" secondAttribute="trailing" constant="10" id="aFl-8d-At5"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="gxz-XK-5RE" secondAttribute="bottom" constant="30" id="o9J-Bx-dOK"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="SZV-CH-Tda" secondAttribute="trailing" constant="10" id="uBO-Zk-ghJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
                         <outlet property="barrelControl" destination="EJH-1N-SjA" id="3AD-KM-c3a"/>
+                        <outlet property="barrelControlTank" destination="gxz-XK-5RE" id="OJw-ph-iPQ"/>
+                        <outlet property="fireControl" destination="SZV-CH-Tda" id="RFl-xi-Ee6"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="669.60000000000002" y="27.436281859070466"/>
         </scene>
     </scenes>
 </document>
