@@ -59,9 +59,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         return worldMap
     }
 	
-<<<<<<< HEAD
-    
-=======
     func retrieveWorldMapData(from url: URL) -> Data? {
         do {
             return try Data(contentsOf: self.worldMapURL)
@@ -69,7 +66,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
             fatalError("Error retrieving world map data.")
         }
     }
->>>>>>> master
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
