@@ -11,6 +11,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireDelegate {
+    
     func fire() {
         
     }
@@ -18,6 +19,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     func rotate(orientation: CGPoint, sender: BarrelControl) {
         
     }
+    
+    /*
+     angleDisplay.angle отвечает за угол стрелки показателя наклона дула в радианах
+    */
     
 	
 	@IBOutlet var sceneView: ARSCNView!
@@ -31,6 +36,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     @IBOutlet var fireControl: FireControl!
     
     @IBOutlet var barrelControlTank: BarrelControl!
+    
+    @IBOutlet var angleDisplay: AngleDisplay!
     
     var sessionState: SessionState = .setup {
 		didSet {
