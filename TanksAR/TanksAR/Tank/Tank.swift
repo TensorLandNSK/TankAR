@@ -57,11 +57,11 @@ class Tank : SCNNode {
         //tanksChilds[2].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[2].childNodes[0].pivot, Float(0.0), Float(1.8), Float(-2.0))
         var yTranslate = Double(2.0)
         var zTranslate = Double(-2.0)
-        var scale = Double(0.05)
+//        var scale = Double(0.05)
 //        let translateCannonLocal = SCNVector3( 0.0, yTranslate, zTranslate )
         let translateCannonGlobal = SCNVector3( 0.0, yTranslate, zTranslate )
         tanksChilds[2].childNodes[0].simdPivot = simd_float4x4(SCNMatrix4MakeTranslation(Float(0.0), Float(yTranslate), Float(zTranslate)))
-        tanksChilds[2].childNodes[0].position = translateCannonGlobal
+        tanksChilds[2].childNodes[0].position = translateCannonGlobal // I am not sure how it works but I have to do this two lines to fixe pivot
 //        tanksChilds[2].childNodes[0].localTranslate(by: translateCannonLocal)
         
 
@@ -80,9 +80,9 @@ class Tank : SCNNode {
     }
     
     func move(direction: SCNVector3) {
-//        tankPosition.x += direction.x
-//        tankPosition.y += direction.y
-//        tankPosition.z += direction.z
+        tankPosition.x += direction.x
+        tankPosition.y += direction.y
+        tankPosition.z += direction.z
         // Move tank SCNNode
         self.localTranslate(by: direction)
     }

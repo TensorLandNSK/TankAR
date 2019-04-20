@@ -14,7 +14,7 @@ protocol FireDelegate {
 
 class FireControl: UIButton {
     var lastTime: Date = Date() - 5.0
-    let dT = 5.0
+    let dT = 1.0
     var delegateFire: FireDelegate!
     override init(frame: CGRect) {
         super.init(frame: frame)
