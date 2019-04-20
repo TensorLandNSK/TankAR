@@ -159,12 +159,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         //let bodyGeo = SCNPlane(width: CGFloat(boardSize.x), height: CGFloat(boardSize.y))
         //gameBoard.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: bodyGeo, options: nil))
         //if( )
-        self.gameBoard.addChildNode(tank)
+        setupTank()
         //tank.boardSize = boardSize
         //projectile.boardSize = boardSize
         //tank.rescale(size: boardSize)
 	}
 	
+    func setupTank() {
+        self.gameBoard.addChildNode(tank)
+    }
+    
 	var tank = Tank()
 	
 	func setupBoard() -> CGSize {
