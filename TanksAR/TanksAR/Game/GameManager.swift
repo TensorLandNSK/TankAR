@@ -106,10 +106,20 @@ class GameManager : TankServiceDelegate {
         let name = tank == hostTank ? "host" : "enemy"
         
         proj.launchProjectile(position: SCNVector3Zero, x: normalizedBarrelFront.x * vel, y: normalizedBarrelFront.y * vel, z: normalizedBarrelFront.z * vel, name: name)
-		
+
 		return proj
 	}
 
+    func createTrail(at: SCNVector3) {
+        let trail = SCNParticleSystem(named: "FireExplosion.scnp", inDirectory: nil)!
+        let node = SCNNode()
+        node.addParticleSystem(trail)
+        node.scale = SCNVector3(0.001, 0.001, 0.001)
+         sceneView.scene.rootNode.addChildNode(node)
+        node.worldPosition = at
+       
+    }
+    
     func rotateBarrel(orientation: CGPoint) -> Double {
         sendBarrelMovement(vector: orientation)
         return rotateBarrel(tank: hostTank, orientation: orientation)
@@ -259,15 +269,17 @@ class GameManager : TankServiceDelegate {
             print("Collision with ground")
         } else if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeA.name == "host" {
             if contact.nodeB == enemyTank {
-                //contact.nodeA.removeFromParentNode()
-                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
-                NSLog("hit")
+                createTrail(at: contact.nodeA.worldPosition)
+                contact.nodeA.removeFromParentNode()
+//                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
+//                NSLog("hit")
             }
         } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "host"{
             if contact.nodeA == enemyTank {
-                //contact.nodeB.removeFromParentNode()
-                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
-                NSLog("hit")
+                createTrail(at: contact.nodeB.worldPosition)
+                contact.nodeB.removeFromParentNode()
+//                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
+//                NSLog("hit")
             }
         }
     }
