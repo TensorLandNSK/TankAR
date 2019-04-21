@@ -14,4 +14,5 @@ protocol GameManagerDelegate {
     func didWorldReceieved(worldMap : ARWorldMap)
     func didTankMovementReceived(vector: CGPoint)
     func didBarrelMovementReceived(vector: CGPoint)
+    func didHitReceived()
 }

@@ -231,6 +231,7 @@
                         <outlet property="barrelControlTank" destination="gxz-XK-5RE" id="OJw-ph-iPQ"/>
                         <outlet property="enemyHPBar" destination="Y0Z-Cw-WJp" id="GjW-YB-mku"/>
                         <outlet property="fireControl" destination="SZV-CH-Tda" id="RFl-xi-Ee6"/>
+                        <outlet property="hostHPBar" destination="Uwi-eq-Sn3" id="mit-S1-tbF"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outlet property="statusLabel" destination="b2X-sa-Q5O" id="Nb3-3t-yN6"/>
                         <segue destination="FQK-QY-C35" kind="show" identifier="showMain" id="8ab-ey-uBc"/>

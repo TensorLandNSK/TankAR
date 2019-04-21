@@ -278,6 +278,7 @@ class GameManager : TankServiceDelegate {
                 contact.nodeA.removeFromParentNode()
 //                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
 //                NSLog("hit")
+                enemyTank.hp -= 0.1
             }
         } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "host"{
             if contact.nodeA == enemyTank {
@@ -285,21 +286,23 @@ class GameManager : TankServiceDelegate {
                 contact.nodeB.removeFromParentNode()
 //                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
 //                NSLog("hit")
-            }
+                enemyTank.hp -= 0.1           }
         } else if ( contact.nodeA.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeA.name == "enemy" {
             if contact.nodeB == hostTank {
                 createTrail(at: contact.contactPoint, name: "host" )
                 contact.nodeA.removeFromParentNode()
                 //                contact.nodeA.geometry?.materials.first?.diffuse.contents = UIColor.green
                 //                NSLog("hit")
-            }
+                hostTank.hp -= 0.1          }
         } else if ( contact.nodeB.categoryBitMask == ViewController.colliderCategory.projectile ) && contact.nodeB.name == "enemy"{
             if contact.nodeA == hostTank {
                 createTrail(at: contact.contactPoint, name: "host" )
                 contact.nodeB.removeFromParentNode()
                 //                contact.nodeB.geometry?.materials.first?.diffuse.contents = UIColor.green
                 //                NSLog("hit")
+                hostTank.hp -= 0.1
             }
         }
+        delegate?.didHitReceived()
     }
 }

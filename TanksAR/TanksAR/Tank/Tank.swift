@@ -36,6 +36,8 @@ class Tank : SCNNode {
     let cannonMinAngle: Double = -10.0*Double.pi/180.0
     let scene: SCNScene
     
+    var hp: Float
+    
     override init() {
         // Create a new scene
         scene = SCNScene(named: "art.scnassets/TankModel.dae")!
@@ -45,6 +47,8 @@ class Tank : SCNNode {
         distanceToSide = width / 2.0
         distanceToFront = lenght / 2.0
         distanceToCorner = sqrt( width*width + lenght*lenght ) / 2.0
+        
+        self.hp = 1.0
         
         super.init()
         
@@ -71,7 +75,6 @@ class Tank : SCNNode {
         tanksChilds[0].childNodes[0].position = translateCannonGlobal // I am not sure how it works but I have to do this two lines to fixe pivot
 //        tanksChilds[0].childNodes[0].localTranslate(by: translateCannonLocal)
         
-
     }
     
     required init?(coder aDecoder: NSCoder) {

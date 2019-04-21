@@ -37,6 +37,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
     
     @IBOutlet var angleDisplay: AngleDisplay!
     
+    @IBOutlet weak var hostHPBar: UIProgressView!
+    
     @IBOutlet weak var enemyHPBar: UIProgressView!
     
     var sessionState: SessionState = .setup {
@@ -195,5 +197,10 @@ extension ViewController: GameManagerDelegate {
     
     func didBarrelMovementReceived(vector: CGPoint) {
         
+    }
+    
+    func didHitReceived() {
+        hostHPBar.setProgress(gameManager.hostTank.hp, animated: true)
+        enemyHPBar.setProgress(gameManager.enemyTank.hp, animated: true)
     }
 }

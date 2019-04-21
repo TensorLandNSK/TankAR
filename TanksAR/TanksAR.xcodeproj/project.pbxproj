@@ -41,6 +41,9 @@
 		CE1219E5226AC1BC006F53EE /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E4226AC1BC006F53EE /* GameManager.swift */; };
 		CE1219E7226AC27A006F53EE /* TankServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */; };
 		CE1219E9226AD6E4006F53EE /* GameManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */; };
+		CEC2DFA8226C210900711A3E /* explodeTank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEC2DFA6226C210800711A3E /* explodeTank.mp3 */; };
+		CEC2DFA9226C210900711A3E /* hitForEnemy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEC2DFA7226C210800711A3E /* hitForEnemy.mp3 */; };
+		CEC2DFAB226C210F00711A3E /* FireExplosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = CEC2DFAA226C210F00711A3E /* FireExplosion.scnp */; };
 		CEEA60462269DB9000620E87 /* TanksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA60452269DB9000620E87 /* TanksService.swift */; };
 		CEEA6048226A01E800620E87 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA6047226A01E800620E87 /* Notifications.swift */; };
 		CEEA604D226A0A4A00620E87 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEA604C226A0A4A00620E87 /* GameData.swift */; };
@@ -83,6 +86,9 @@
 		CE1219E4226AC1BC006F53EE /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		CE1219E6226AC27A006F53EE /* TankServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankServiceDelegate.swift; sourceTree = "<group>"; };
 		CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerDelegate.swift; sourceTree = "<group>"; };
+		CEC2DFA6226C210800711A3E /* explodeTank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explodeTank.mp3; sourceTree = "<group>"; };
+		CEC2DFA7226C210800711A3E /* hitForEnemy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hitForEnemy.mp3; sourceTree = "<group>"; };
+		CEC2DFAA226C210F00711A3E /* FireExplosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = FireExplosion.scnp; sourceTree = "<group>"; };
 		CEEA60452269DB9000620E87 /* TanksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanksService.swift; sourceTree = "<group>"; };
 		CEEA6047226A01E800620E87 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CEEA604C226A0A4A00620E87 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -223,6 +229,8 @@
 		C8DF9242226B505F001700AB /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				CEC2DFA6226C210800711A3E /* explodeTank.mp3 */,
+				CEC2DFA7226C210800711A3E /* hitForEnemy.mp3 */,
 				C8DF9249226B6469001700AB /* reloading.mp3 */,
 				C8DF9247226B61F4001700AB /* shotTank.mp3 */,
 				C8DF9245226B555B001700AB /* AudioControl.swift */,
@@ -233,6 +241,7 @@
 		CEEA604B226A0A3700620E87 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				CEC2DFAA226C210F00711A3E /* FireExplosion.scnp */,
 				CEEA604C226A0A4A00620E87 /* GameData.swift */,
 				CE1219E4226AC1BC006F53EE /* GameManager.swift */,
 				CE1219E8226AD6E4006F53EE /* GameManagerDelegate.swift */,
@@ -301,9 +310,12 @@
 				690AB4A422686E0D00CFB11E /* art.scnassets in Resources */,
 				C8DF9248226B61F4001700AB /* shotTank.mp3 in Resources */,
 				C8DF924A226B6469001700AB /* reloading.mp3 in Resources */,
+				CEC2DFA8226C210900711A3E /* explodeTank.mp3 in Resources */,
 				690AB4AE22686E0E00CFB11E /* LaunchScreen.storyboard in Resources */,
+				CEC2DFAB226C210F00711A3E /* FireExplosion.scnp in Resources */,
 				690AB4AB22686E0E00CFB11E /* Assets.xcassets in Resources */,
 				690AB4A922686E0D00CFB11E /* Main.storyboard in Resources */,
+				CEC2DFA9226C210900711A3E /* hitForEnemy.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
