@@ -29,11 +29,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc4-c3-HwS">
-                                <rect key="frame" x="48" y="542" width="279" height="42"/>
+                                <rect key="frame" x="100" y="542" width="175" height="42"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Wait a second...">
+                                    <fragment content="Loading...">
                                         <attributes>
                                             <font key="NSFont" size="37" name="Arial-BoldMT"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>

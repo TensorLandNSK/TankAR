@@ -184,12 +184,12 @@
                                 </connections>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2X-sa-Q5O">
-                                <rect key="frame" x="87.5" y="70" width="200.5" height="84"/>
+                                <rect key="frame" x="98.5" y="70" width="178" height="74.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="status">
                                         <attributes>
                                             <color key="NSColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="72" name="TrebuchetMS-Bold"/>
+                                            <font key="NSFont" size="64" name="TrebuchetMS-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>

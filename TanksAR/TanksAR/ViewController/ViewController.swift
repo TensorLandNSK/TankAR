@@ -166,8 +166,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, RotateDelegate, FireD
         barrelControlTank.isHidden = true
         fireControl.isHidden = true
         
-        statusLabel.textColor = .green
-        statusLabel.text? = (isWinner) ? "EZ WIN" : "YOU LOST"
+        statusLabel.textColor = (isWinner) ? .green : .red
+        statusLabel.text? = (isWinner) ? "YOU WON" : "ENEMY WON"
         statusLabel.isHidden = false
         
         let gs = UITapGestureRecognizer(target: self, action: #selector(showMain))
@@ -202,5 +202,10 @@ extension ViewController: GameManagerDelegate {
     func didHitReceived() {
         hostHPBar.setProgress(gameManager.hostTank.hp, animated: true)
         enemyHPBar.setProgress(gameManager.enemyTank.hp, animated: true)
+        if hostHPBar.progress == 0 {
+            onEndGame(isWinner : false)
+        } else if enemyHPBar.progress == 0 {
+            onEndGame(isWinner : true)
+        }
     }
 }

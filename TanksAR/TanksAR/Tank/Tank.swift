@@ -66,8 +66,8 @@ class Tank : SCNNode {
 
         
         //tanksChilds[0].childNodes[0].pivot = SCNMatrix4Translate(tanksChilds[0].childNodes[0].pivot, Float(0.0), Float(1.8), Float(-2.0))
-        var yTranslate = Double(2.0)
-        var zTranslate = Double(-2.0)
+        let yTranslate = Double(2.0)
+        let zTranslate = Double(-2.0)
 //        var scale = Double(0.05)
 //        let translateCannonLocal = SCNVector3( 0.0, yTranslate, zTranslate )
         let translateCannonGlobal = SCNVector3( 0.0, yTranslate, zTranslate )
